@@ -1,0 +1,27 @@
+{
+    "price": 3495000,
+    "name": "Villa",
+    "image": "https://bilder.hemnet.se/images/itemgallery_cut/8c/04/8c0437b118aeaae6c83ecbe290931a08.jpg",
+    "rooms": [
+        {
+            "name": "Kitchen",
+            "image": "https://www.bjurfors.se/contentassets/61dfedfec6004d8aae08a0cc9efe8e15/cbild5d63lepibegucrrn.jpg?width=1265&&mode=crop&quality=80"
+        },
+        {
+            "name": "Living room",
+            "image": "https://www.bjurfors.se/contentassets/61dfedfec6004d8aae08a0cc9efe8e15/cbild5d63lem4fegucpe2.jpg?width=1265&&mode=crop&quality=80"
+        },
+        {
+            "name": "Bedroom",
+            "image": "https://www.bjurfors.se/contentassets/61dfedfec6004d8aae08a0cc9efe8e15/cbild5d63leaj3eguciv8.jpg?width=1265&&mode=crop&quality=80"
+        },
+        {
+            "name": "Toilet",
+            "image": "https://www.bjurfors.se/contentassets/61dfedfec6004d8aae08a0cc9efe8e15/cbild5d63lfhq5egudc91.jpg?width=1265&&mode=crop&quality=80"
+        },
+        {
+            "name": "Bathroom",
+            "image": "https://www.bjurfors.se/contentassets/61dfedfec6004d8aae08a0cc9efe8e15/cbild5d63le9aheguci8u.jpg?width=1265&&mode=crop&quality=80"
+        }
+    ]
+}
