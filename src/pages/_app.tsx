@@ -1,4 +1,5 @@
 import { type AppType } from "next/dist/shared/lib/utils";
+import { ToastContainer } from "react-toastify";
 
 import "~/styles/globals.css";
 
