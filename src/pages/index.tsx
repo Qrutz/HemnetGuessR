@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import HemnetLogo from "~/components/logo";
 
 const Home: NextPage = () => {
   const [someState, setSomeState] = useState("Play now!");
@@ -39,11 +40,11 @@ const Home: NextPage = () => {
           <div className="flex flex-col justify-center p-4">
             <div className="flex w-full flex-col items-center  gap-1    border-b p-6">
               <h2 className="text-center text-4xl font-semibold">
-                GUESS ZE PRICE
+                HEMNET CHALLENGE
               </h2>
               <p className="text-md text-center ">
-                Housle is a daily trivia game where you guess the list price of
-                houses!
+                HemnetChallenge is a daily trivia game where you guess the list
+                price of houses!
               </p>
             </div>
             <div className="space-y-1">

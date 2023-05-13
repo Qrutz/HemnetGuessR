@@ -17,6 +17,13 @@ export default function results() {
     setWin(checkIfUserWon());
   }, []);
 
+  useEffect(() => {
+    // if guessess is not in local storage, router push to home
+    if (!localStorage.getItem("guesses")) {
+      router.push("/");
+    }
+  }, []);
+
   function checkIfUserWon() {
     // get the price from the house.json file
     const bestGuess = getBestGuess();
