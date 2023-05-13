@@ -1,0 +1,216 @@
+1683899501979	geckodriver	INFO	Listening on 127.0.0.1:38801
+1683899502581	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/sna ... ed" "--remote-debugging-port" "56925" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile12cZTw"
+*** You are running in headless mode.
+Gtk-Message: 15:51:42.685: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+1683899532453	geckodriver	INFO	Listening on 127.0.0.1:49103
+1683899532563	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/sna ... ed" "--remote-debugging-port" "57487" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileqwCHcQ"
+Gtk-Message: 15:52:12.671: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+Gtk-Message: 15:52:12.734: Failed to load module "colorreload-gtk-module"
+Gtk-Message: 15:52:12.734: Failed to load module "window-decorations-gtk-module"
+1683899664826	geckodriver	INFO	Listening on 127.0.0.1:37955
+1683899665464	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/sna ... ed" "--remote-debugging-port" "55761" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilefZBBwl"
+Gtk-Message: 15:54:25.568: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+Gtk-Message: 15:54:25.628: Failed to load module "colorreload-gtk-module"
+Gtk-Message: 15:54:25.628: Failed to load module "window-decorations-gtk-module"
+1683899718553	geckodriver	INFO	Listening on 127.0.0.1:53307
+1683899719168	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/sna ... ed" "--remote-debugging-port" "51335" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileFBOPEo"
+Gtk-Message: 15:55:19.270: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+Gtk-Message: 15:55:19.338: Failed to load module "colorreload-gtk-module"
+Gtk-Message: 15:55:19.338: Failed to load module "window-decorations-gtk-module"
+1683900002775	geckodriver	INFO	Listening on 127.0.0.1:54965
+1683900003280	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ed" "--remote-debugging-port" "60801" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilemKHdhC"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1683900003699	Marionette	INFO	Marionette enabled
+1683900003703	Marionette	INFO	Listening on port 39719
+console.error: "Warning: unrecognized command line flag -window-size\n"
+console.error: "Warning: unrecognized command line flag -disable-extensions\n"
+JavaScript error: resource://gre/modules/URIFixup.sys.mjs, line 458: NS_ERROR_MALFORMED_URI: Couldn't build a valid uri
+console.error: ({})
+console.error: "Warning: unrecognized command line flag -proxy-bypass-list\n"
+console.error: "Warning: unrecognized command line flag -start-maximized\n"
+Read port: 39719
+WebDriver BiDi listening on ws://127.0.0.1:60801
+1683900003848	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:60801/devtools/browser/5c1e2b0a-d0a6-4883-a408-cf54a7fbf79c
+console.error: "update.locale" " file doesn't exist in either the application or GRE directories"
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.zenrows.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.zenrows.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.zenrows.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.zenrows.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.zenrows.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.zenrows.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.zenrows.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.zenrows.com."
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+1683900201629	geckodriver	INFO	Listening on 127.0.0.1:53757
+1683900202134	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ed" "--remote-debugging-port" "36415" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileO5cMsd"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1683900202604	Marionette	INFO	Marionette enabled
+1683900202609	Marionette	INFO	Listening on port 45795
+Read port: 45795
+console.error: "Warning: unrecognized command line flag -window-size\n"
+console.error: "Warning: unrecognized command line flag -disable-extensions\n"
+JavaScript error: resource://gre/modules/URIFixup.sys.mjs, line 458: NS_ERROR_MALFORMED_URI: Couldn't build a valid uri
+console.error: ({})
+console.error: "Warning: unrecognized command line flag -proxy-bypass-list\n"
+console.error: "Warning: unrecognized command line flag -start-maximized\n"
+WebDriver BiDi listening on ws://127.0.0.1:36415
+1683900202821	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:36415/devtools/browser/e4393fe9-4c75-4c51-a5ba-aee74521d9e9
+console.error: "update.locale" " file doesn't exist in either the application or GRE directories"
+1683900274670	geckodriver	INFO	Listening on 127.0.0.1:45115
+1683900274674	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ed" "--remote-debugging-port" "44239" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileiSyWWj"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1683900275079	Marionette	INFO	Marionette enabled
+1683900275082	Marionette	INFO	Listening on port 34745
+console.error: "Warning: unrecognized command line flag -window-size\n"
+console.error: "Warning: unrecognized command line flag -disable-extensions\n"
+JavaScript error: resource://gre/modules/URIFixup.sys.mjs, line 458: NS_ERROR_MALFORMED_URI: Couldn't build a valid uri
+console.error: ({})
+console.error: "Warning: unrecognized command line flag -proxy-bypass-list\n"
+console.error: "Warning: unrecognized command line flag -start-maximized\n"
+Read port: 34745
+WebDriver BiDi listening on ws://127.0.0.1:44239
+1683900275225	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:44239/devtools/browser/f2ebf2e7-8540-4cec-9a28-23c9804e16b3
+1683900336417	geckodriver	INFO	Listening on 127.0.0.1:59795
+1683900336921	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ed" "--remote-debugging-port" "49343" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilefZMPPP"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1683900337329	Marionette	INFO	Marionette enabled
+1683900337332	Marionette	INFO	Listening on port 38927
+console.error: "Warning: unrecognized command line flag -window-size\n"
+console.error: "Warning: unrecognized command line flag -disable-extensions\n"
+JavaScript error: resource://gre/modules/URIFixup.sys.mjs, line 458: NS_ERROR_MALFORMED_URI: Couldn't build a valid uri
+console.error: ({})
+console.error: "Warning: unrecognized command line flag -proxy-bypass-list\n"
+console.error: "Warning: unrecognized command line flag -start-maximized\n"
+Read port: 38927
+WebDriver BiDi listening on ws://127.0.0.1:49343
+1683900337486	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:49343/devtools/browser/be6ec506-891c-43ff-8a80-376ee6bebdc8
+console.error: "update.locale" " file doesn't exist in either the application or GRE directories"
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.zenrows.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.zenrows.com."
+1683900621089	geckodriver	INFO	Listening on 127.0.0.1:35505
+1683900621593	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ed" "--remote-debugging-port" "49225" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile11Ew0c"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1683900622020	Marionette	INFO	Marionette enabled
+1683900622023	Marionette	INFO	Listening on port 33829
+console.error: "Warning: unrecognized command line flag -window-size\n"
+console.error: "Warning: unrecognized command line flag -disable-extensions\n"
+JavaScript error: resource://gre/modules/URIFixup.sys.mjs, line 458: NS_ERROR_MALFORMED_URI: Couldn't build a valid uri
+console.error: ({})
+console.error: "Warning: unrecognized command line flag -proxy-bypass-list\n"
+console.error: "Warning: unrecognized command line flag -start-maximized\n"
+Read port: 33829
+WebDriver BiDi listening on ws://127.0.0.1:49225
+1683900622171	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:49225/devtools/browser/cc29dc21-4839-41a1-9394-7fb82b57b402
+1683900631434	geckodriver	INFO	Listening on 127.0.0.1:41395
+1683900631938	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ed" "--remote-debugging-port" "59737" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileRKg2lv"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1683900632361	Marionette	INFO	Marionette enabled
+1683900632364	Marionette	INFO	Listening on port 34273
+console.error: "Warning: unrecognized command line flag -window-size\n"
+console.error: "Warning: unrecognized command line flag -disable-extensions\n"
+JavaScript error: resource://gre/modules/URIFixup.sys.mjs, line 458: NS_ERROR_MALFORMED_URI: Couldn't build a valid uri
+console.error: ({})
+console.error: "Warning: unrecognized command line flag -proxy-bypass-list\n"
+console.error: "Warning: unrecognized command line flag -start-maximized\n"
+Read port: 34273
+WebDriver BiDi listening on ws://127.0.0.1:59737
+1683900632489	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:59737/devtools/browser/4ce9362b-dc4f-429a-bd7c-081b8e7d3127
+console.error: "update.locale" " file doesn't exist in either the application or GRE directories"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 2748 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 3559 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://c.bannerflow.net/scripts/animated-creative.5.371d8de5e8841c7371ba.js, line 143: unreachable code after return statement
+JavaScript warning: https://c.bannerflow.net/scripts/animated-creative.5.371d8de5e8841c7371ba.js line 1 > eval, line 143: unreachable code after return statement
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 2020 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.hemnet.se."
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 1253 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 6481 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 7611 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 1757 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: resource://devtools/server/actors/utils/sources-manager.js, line 432: TypeError: channel is null
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 4092 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 2671 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: uncaught exception: undefined
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 6943 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+console.error: (new TypeError("lazy.AsyncShutdown.profileBeforeChange is undefined", "resource://services-settings/Database.sys.mjs", 599))
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 4018 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 2998 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 2986 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[Child 404391, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (LinkHandler, Link:SetIcon) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+console.error: (new InvalidStateError("JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment", (void 0), 572))
+[Child 404391, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (LinkHandler, Link:SetFailedIcon) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 587: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 380 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/A6DkqFxHDGl7nKslapf_JwSgNLk5S51nxKr2xdQhtdg.js line 2 > eval line 4645 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[Child 390090, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 390090, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 390090, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 390090, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 390090, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 390090, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 390090, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 390090, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 576: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 576: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 576: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 576: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 576: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 576: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 576: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 576: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 576: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1683903340320	Marionette	INFO	Stopped listening on port 39719

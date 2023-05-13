@@ -27,41 +27,54 @@ for n in pages:
     soup = BeautifulSoup(r.text, 'html.parser')
 
     # Every house information stored inside an HTML "li"
-    containers = soup.find_all('li', attrs={'class': 'normal-results__hit js-normal-list-item'})
+    containers = soup.find_all(
+        'li', attrs={'class': 'normal-results__hit js-normal-list-item'})
 
     # Looping through each HTML "li"
     for container in containers:
-        primary_infos = container.find('div', attrs={'class': 'listing-card__attributes listing-card__attributes--primary'}).contents
-        suplementary_infos = container.find('div', attrs={'class': 'listing-card__attribute listing-card__attribute--secondary listing-card__attribute--supplemental-area'})
-        land_area = container.find('div', attrs={'class': 'listing-card__attribute listing-card__attribute--secondary listing-card__attribute--land-area'})
+        primary_infos = container.find('div', attrs={
+                                       'class': 'listing-card__attributes listing-card__attributes--primary'}).contents
+        suplementary_infos = container.find('div', attrs={
+                                            'class': 'listing-card__attribute listing-card__attribute--secondary listing-card__attribute--supplemental-area'})
+        land_area = container.find('div', attrs={
+                                   'class': 'listing-card__attribute listing-card__attribute--secondary listing-card__attribute--land-area'})
 
         if primary_infos is not None and len(primary_infos) == 7:
             if land_area is not None and len(land_area) == 1:
                 if suplementary_infos is not None and len(suplementary_infos) == 1:
                     # Getting the values for address, city, pris, boarea, rum, tomt, and biarea
-                    address = container.find('h2', attrs={'class': 'listing-card__address listing-card__address--normal'}).text[13:-1].strip()
-                    city = container.find('div', attrs={'class': 'listing-card__attribute listing-card__location'}).text.strip()
-                    pris = container.find('div', attrs={'class': 'listing-card__attributes listing-card__attributes--primary'}).contents[1].text[:-2].replace('\xa0', '').replace('fr.', '').replace('Pris sakn', '0').strip()
+                    address = container.find('h2', attrs={
+                                             'class': 'listing-card__address listing-card__address--normal'}).text[13:-1].strip()
+                    city = container.find('div', attrs={
+                                          'class': 'listing-card__attribute listing-card__location'}).text.strip()
+                    pris = container.find('div', attrs={'class': 'listing-card__attributes listing-card__attributes--primary'}
+                                          ).contents[1].text[:-2].replace('\xa0', '').replace('fr.', '').replace('Pris sakn', '0').strip()
                     pris = int(pris)
 
-                    boarea = primary_infos[3].text.replace(" m²", "").replace(",", ".")
+                    boarea = primary_infos[3].text.replace(
+                        " m²", "").replace(",", ".")
 
                     rum = primary_infos[5].text.replace(" rum", "")
 
-                    tomt = land_area.text.strip().replace(' m² tomt', '').replace('\xa0', "").replace(" ha tomt", "000").replace(",", "")
+                    tomt = land_area.text.strip().replace(' m² tomt', '').replace(
+                        '\xa0', "").replace(" ha tomt", "000").replace(",", "")
 
-                    biarea = suplementary_infos.text.strip().replace(' m² biarea', '').replace(",", ".")
+                    biarea = suplementary_infos.text.strip().replace(
+                        ' m² biarea', '').replace(",", ".")
 
                     # Extract the image URL
-                    image_url = container.find('img', attrs={'class': 'lazy'})['data-src']
+                    image_url = container.find(
+                        'img', attrs={'class': 'lazy'})['data-src']
 
                     # Append all the values to the empty record list
-                    records.append((address, city, pris, boarea, rum, tomt, biarea, image_url))
+                    records.append((address, city, pris, boarea,
+                                   rum, tomt, biarea, image_url))
             else:
                 print("Information is not available!")
 
 # Create a pandas DataFrame from the records list
-df = pd.DataFrame(records, columns=['Address', 'City', 'Price', 'Area', 'Rooms', 'Land', 'Additional Area', 'Image URL'])
+df = pd.DataFrame(records, columns=[
+                  'Address', 'City', 'Price', 'Area', 'Rooms', 'Land', 'Additional Area', 'Image URL'])
 
 # Display the DataFrame
 print(df)
