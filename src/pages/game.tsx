@@ -136,7 +136,7 @@ export default function Game() {
   useEffect(() => {
     if (gameData.guesses.length === 6) {
       saveGameDataToLocalStorage();
-      router.push("/results").then().catch(null);
+      void router.push("/results").then().catch(null);
     }
   }, [gameData.guesses]);
 
@@ -227,7 +227,7 @@ export default function Game() {
           {currentGuessIndex === gameData.guesses.length ? (
             <form
               key="guess-form"
-              onSubmit={void handleGuess}
+              onSubmit={handleGuess}
               className="rounded-xl rounded-t bg-gray-200"
             >
               <span className="flex flex-col p-4">
