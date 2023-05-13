@@ -8,11 +8,11 @@ import { Transition } from "@headlessui/react";
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 
 type FormValues = {
-  guess: number;
+  guess: string;
 };
 
 interface gameData {
-  guesses: number[];
+  guesses: string[];
   house: House;
 }
 
@@ -24,7 +24,7 @@ type House = {
 // create json for a house listing which has a price, the image below anda bunch of rooms for that house
 
 export default function game() {
-  const { register, handleSubmit, watch } = useForm<FormValues>();
+  const { register, handleSubmit, reset } = useForm<FormValues>();
   const [gameData, setGameData] = useState<gameData>({
     guesses: [],
     house: json,
@@ -42,8 +42,22 @@ export default function game() {
       return newGameData;
     });
 
+    handleCompareGuessToPrice(data.guess);
     setCurrentGuessIndex((prevIndex) => prevIndex + 1);
   });
+
+  function handleCompareGuessToPrice(guess: string) {
+    const guess1 = Number(guess);
+    const price = gameData.house.price;
+
+    if (guess1 === price) {
+      alert("You guessed correctly!");
+    } else if (guess1 > price) {
+      alert("Your guess is too high!");
+    } else if (guess1 < price) {
+      alert("Your guess is too low!");
+    }
+  }
 
   function saveGameDataToLocalStorage() {
     localStorage.setItem("guesses", gameData.guesses.toLocaleString());
@@ -84,6 +98,7 @@ export default function game() {
 
   // on refresh set current guess to the length of the guesses array
   useEffect(() => {
+    reset({ guess: "" });
     setCurrentGuessIndex(gameData.guesses.length);
   }, [gameData.guesses]);
 
@@ -117,9 +132,9 @@ export default function game() {
     <div className="flex h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950  to-emerald-900 font-mono">
       <div className="flex h-full w-[33rem] flex-col justify-evenly ">
         <span className="flex flex-col gap-2 ">
-          <ProgressBar progress={(currentGuessIndex / 6) * 100} />
+          <ProgressBar progress={((currentGuessIndex + 1) / 6) * 100} />
           <h2 className="text-4xl font-bold text-amber-300">
-            ATTEMPT #{currentGuessIndex}{" "}
+            ATTEMPT #{currentGuessIndex + 1}{" "}
           </h2>
         </span>
         <img
@@ -143,14 +158,14 @@ export default function game() {
               className="rounded-xl rounded-t bg-gray-200"
             >
               <span className="flex flex-col p-4">
-                <div className="relative flex items-center">
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
-                    $
+                <div className="relative flex items-center space-x-2">
+                  <span className="absolute inset-y-0 left-0 flex items-center justify-center px-5 py-4 text-2xl font-light   text-black">
+                    SEK
                   </span>
                   <input
                     {...register("guess", { required: true })}
-                    placeholder="enter the price"
-                    className="w-full rounded-lg border-2 border-gray-300 py-2 pl-10 pr-3 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-opacity-50"
+                    placeholder="42069kr"
+                    className="w-full rounded-lg border-2 border-gray-300 py-2 pl-10 pr-3 text-center text-2xl focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-opacity-50"
                   />
                 </div>
 
