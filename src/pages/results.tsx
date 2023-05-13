@@ -3,6 +3,8 @@ import house from "../../house.json";
 import { IoShareOutline } from "react-icons/io5";
 import { TfiGallery } from "react-icons/tfi";
 import { useRouter } from "next/router";
+import { TwitterIcon, TwitterShareButton } from "react-share";
+import { BsTwitter } from "react-icons/bs";
 
 export default function results() {
   const [bestGuess, setBestGuess] = useState<number>(0);
@@ -95,11 +97,14 @@ export default function results() {
             </p>
           </div>
         </div>
-        <div className="mt-4 flex items-center justify-center rounded-lg bg-purple-600">
-          <button className="flex items-center gap-1 p-4 text-2xl tracking-wide text-white ">
-            <IoShareOutline className="" />
-            <h2>SHARE RESULTS</h2>
-          </button>
+        <div className="mt-4 flex  justify-center gap-3 rounded-lg bg-blue-600 p-4 text-2xl tracking-wide text-white">
+          <TwitterShareButton
+            url={`I just won hemnetChallenge with a score of ${bestGuess}!`}
+            className=" flex w-full justify-center gap-2  "
+          >
+            <BsTwitter className="text-3xl" />
+            <h2>SHARE ON TWITTER</h2>
+          </TwitterShareButton>
         </div>
 
         <div className="mt-4 rounded-lg bg-white">
