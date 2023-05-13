@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import json from "../../house.json";
 import { Transition } from "@headlessui/react";
+import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 
 type FormValues = {
   guess: number;
@@ -67,6 +68,10 @@ export default function game() {
     setCurrentGuessIndex((prevIndex) => prevIndex + 1);
   }
 
+  function handleBackToCurrentGuess() {
+    setCurrentGuessIndex(gameData.guesses.length);
+  }
+
   useEffect(() => {
     const savedGuessess = localStorage.getItem("guesses");
     if (savedGuessess) {
@@ -90,6 +95,24 @@ export default function game() {
     }
   }, [gameData.guesses]);
 
+  // styling for button, if its impossible to go back further, then disable the button
+  // if its impossible to go forward, then disable the button
+  const handleBackButtonStyle = (currentGuessIndex: number) => {
+    if (currentGuessIndex === 0) {
+      return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center opacity-20 cursor-not-allowed";
+    } else {
+      return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center ";
+    }
+  };
+
+  const handleRightButtonStyle = (currentGuessIndex: number) => {
+    if (currentGuessIndex === gameData.guesses.length) {
+      return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center opacity-20 cursor-not-allowed";
+    } else {
+      return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center";
+    }
+  };
+
   return (
     <div className="flex h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950  to-emerald-900 font-mono">
       <div className="flex h-full w-[33rem] flex-col justify-evenly ">
@@ -99,7 +122,11 @@ export default function game() {
             ATTEMPT #{currentGuessIndex}{" "}
           </h2>
         </span>
-        <img className="w-full" src={gameData.house.images[0]} alt="" />
+        <img
+          className="w-full"
+          src={gameData.house.images[currentGuessIndex]}
+          alt=""
+        />
 
         <Transition
           is="fragment"
@@ -127,26 +154,26 @@ export default function game() {
                   />
                 </div>
 
-                <div className="flex w-full items-center justify-center">
+                <div className="flex w-full items-center justify-center gap-1 py-2">
                   <button
                     type="button"
                     onClick={handleGoBackToLastGuess}
-                    className="flex-1 border bg-gray-500 p-2"
+                    className={handleBackButtonStyle(currentGuessIndex)}
                   >
-                    LEFT{" "}
+                    <AiOutlineDoubleLeft className="text-4xl" />
                   </button>
                   <button
                     type="submit"
-                    className="flex-[3] bg-green-700 p-2 text-2xl text-white"
+                    className="flex-[6] rounded-md bg-green-700 py-2 text-4xl text-white"
                   >
                     Guess
                   </button>
                   <button
                     type="button"
                     onClick={handleGoToNextGuess}
-                    className="flex-1 border bg-gray-500 p-2"
+                    className={handleRightButtonStyle(currentGuessIndex)}
                   >
-                    RIGHT
+                    <AiOutlineDoubleRight className="text-4xl" />
                   </button>
                 </div>
               </span>
@@ -154,30 +181,31 @@ export default function game() {
           ) : (
             <form
               key="current-guess-form"
-              onSubmit={() => console.log("submit")}
+              onSubmit={handleBackToCurrentGuess}
               className="rounded-xl rounded-t bg-gray-200"
             >
               <span className="flex flex-col p-4">
-                <div className="flex w-full items-center justify-center">
+                <div className="flex w-full items-center justify-center gap-1">
                   <button
                     type="button"
                     onClick={handleGoBackToLastGuess}
-                    className="flex-1 border bg-gray-500 p-2"
+                    className={handleBackButtonStyle(currentGuessIndex)}
                   >
-                    LEFT{" "}
+                    <AiOutlineDoubleLeft className="text-4xl" />
                   </button>
+
                   <button
                     type="submit"
-                    className="flex-[3] bg-green-700 p-2 text-2xl text-white"
+                    className="flex-[6] rounded-md bg-green-700 py-2 text-3xl text-white"
                   >
-                    Go back to current
+                    BACK TO GUESSING
                   </button>
                   <button
                     type="button"
                     onClick={handleGoToNextGuess}
-                    className="flex-1 border bg-gray-500 p-2"
+                    className={handleRightButtonStyle(currentGuessIndex)}
                   >
-                    RIGHT
+                    <AiOutlineDoubleRight className="text-4xl" />
                   </button>
                 </div>
               </span>
