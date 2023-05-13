@@ -4,8 +4,10 @@ import { ProgressBar } from "~/components/ProgressBar";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import json from "../../house.json";
-import { Transition } from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
+import { ImCross } from "react-icons/im";
+import { BsZoomIn } from "react-icons/bs";
 
 type FormValues = {
   guess: string;
@@ -36,7 +38,7 @@ export default function game() {
     house: json,
   });
   const [currentGuessIndex, setCurrentGuessIndex] = useState<number>(0);
-  const [clue, setClue] = useState<string>("");
+  const [showImage, setShowImage] = useState<boolean>(false);
   const router = useRouter();
 
   const handleGuess = handleSubmit((data) => {
@@ -156,7 +158,7 @@ export default function game() {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950  to-emerald-900 font-mono">
+    <div className="z-0 flex h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950  to-emerald-900 font-mono">
       <div className="flex h-full w-[33rem] flex-col justify-evenly ">
         <span className="flex flex-col gap-2 ">
           <ProgressBar progress={((currentGuessIndex + 1) / 6) * 100} />
@@ -168,11 +170,50 @@ export default function game() {
             {handleGetClue(currentGuessIndex)}
           </p>
         </span>
-        <img
-          className="w-full"
-          src={gameData.house.images[currentGuessIndex]}
-          alt=""
-        />
+
+        <span>
+          <img
+            className="w-full"
+            src={gameData.house.images[currentGuessIndex]}
+            alt=""
+          />
+        </span>
+        <div className="flex items-center justify-center">
+          <button
+            className="flex items-center justify-between gap-2 rounded-lg bg-purple-800 px-4 py-2 text-white"
+            onClick={() => setShowImage(true)}
+          >
+            <p>Zoom</p>
+            <BsZoomIn className="text-lg" />
+          </button>
+        </div>
+        <Dialog
+          className=""
+          open={showImage}
+          onClose={() => setShowImage(false)}
+        >
+          <div className="fixed inset-0 z-10 flex w-full items-center justify-center">
+            <div className="absolute right-0 top-0 m-2">
+              <button
+                className="rounded-full p-2 text-gray-500  hover:text-gray-700"
+                onClick={() => setShowImage(false)}
+              >
+                <ImCross className="text-4xl text-white" />
+              </button>
+            </div>
+            <div className="flex w-[80%] items-center justify-center rounded-lg ">
+              <img
+                src={gameData.house.images[currentGuessIndex]}
+                alt=""
+                className="max-h-full max-w-full"
+              />
+            </div>
+          </div>
+          <Dialog.Overlay
+            onClick={() => setShowImage(false)}
+            className="fixed inset-0 z-0 bg-black opacity-70"
+          />
+        </Dialog>
 
         <Transition
           is="fragment"
