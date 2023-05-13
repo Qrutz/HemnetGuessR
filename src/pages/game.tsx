@@ -20,6 +20,7 @@ interface gameData {
 
 type House = {
   price: number;
+  listingurl: string;
   name: string;
   presentedBy: string;
   location: string;
