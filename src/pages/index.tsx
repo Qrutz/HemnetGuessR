@@ -1,8 +1,32 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const Home: NextPage = () => {
+  const [someState, setSomeState] = useState("Play now!");
+  const router = useRouter();
+
+  useEffect(() => {
+    //get the guessess array from local storage
+    const guessess = localStorage.getItem("guesses");
+
+    const guessesArray = guessess?.split(",").map((guess) => Number(guess));
+    console.log(guessesArray?.length);
+    switch (guessesArray?.length) {
+      case undefined:
+        setSomeState("Play now!");
+        break;
+      case 6:
+        router.push("/results");
+        break;
+      default:
+        setSomeState("Continue");
+        break;
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -41,7 +65,7 @@ const Home: NextPage = () => {
 
               <Link href="/game">
                 <button className="w-full bg-slate-600  p-3 text-xl font-extrabold text-white">
-                  PLAY NOW!
+                  {someState}
                 </button>
               </Link>
             </div>
