@@ -1,6 +1,11 @@
 {
     "price": 3495000,
-    "name": "Västra Frölunda - Kaverös",
+    "name": "Rullstensvägen 25C",
+    "presentedBy": "HusmanHagberg",
+    "location": "Sandared, Borås kommun",
+    "rooms": 1,
+    "size": 40,
+    "buildingYear": 1963,
     "images": [
         "https://bilder.hemnet.se/images/itemgallery_cut/8c/04/8c0437b118aeaae6c83ecbe290931a08.jpg",
         "https://www.bjurfors.se/contentassets/61dfedfec6004d8aae08a0cc9efe8e15/cbild5d63lepibegucrrn.jpg?width=1265&&mode=crop&quality=80",

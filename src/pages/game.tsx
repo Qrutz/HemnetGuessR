@@ -18,6 +18,12 @@ interface gameData {
 
 type House = {
   price: number;
+  name: string;
+  presentedBy: string;
+  location: string;
+  rooms: number;
+  size: number;
+  buildingYear: number;
   images: string[];
 };
 
@@ -30,6 +36,7 @@ export default function game() {
     house: json,
   });
   const [currentGuessIndex, setCurrentGuessIndex] = useState<number>(0);
+  const [clue, setClue] = useState<string>("");
   const router = useRouter();
 
   const handleGuess = handleSubmit((data) => {
@@ -56,6 +63,26 @@ export default function game() {
       alert("Your guess is too high!");
     } else if (guess1 < price) {
       alert("Your guess is too low!");
+    }
+  }
+
+  //get clue method, first clue corresponds to presentedBy, second to location, third to rooms
+  function handleGetClue(clue: number): string {
+    // if current guess index is 0, return presentedBy
+    if (clue === 0) {
+      return "Presented by: " + gameData.house.presentedBy;
+    } else if (clue === 1) {
+      return "Location: " + gameData.house.location;
+    } else if (clue === 2) {
+      return "Antal rum: " + gameData.house.rooms.toString();
+    } else if (clue === 3) {
+      return "sq feet: " + gameData.house.size.toString();
+    } else if (clue === 4) {
+      return "Buildyear: " + gameData.house.buildingYear.toString();
+    } else if (clue === 5) {
+      return gameData.house.name;
+    } else {
+      return "No more clues!";
     }
   }
 
@@ -134,8 +161,12 @@ export default function game() {
         <span className="flex flex-col gap-2 ">
           <ProgressBar progress={((currentGuessIndex + 1) / 6) * 100} />
           <h2 className="text-4xl font-bold text-amber-300">
-            ATTEMPT #{currentGuessIndex + 1}{" "}
+            CLUE #{currentGuessIndex + 1}{" "}
           </h2>
+
+          <p className="text-xl font-medium text-white">
+            {handleGetClue(currentGuessIndex)}
+          </p>
         </span>
         <img
           className="w-full"
