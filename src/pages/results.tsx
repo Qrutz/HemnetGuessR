@@ -39,10 +39,10 @@ export default function results() {
       <div className="rounded-lg bg-white p-6 shadow-md">
         <h2 className="mb-4 text-2xl font-bold">Results</h2>
         <p className="mb-4 text-gray-600">
-          The house price is <span className="font-bold">${house.price}</span>.
+          The house price is <span className="font-bold">{house.price.toLocaleString()} kr</span>.
         </p>
         <p className="mb-4 text-gray-600">
-          Your best guess was <span className="font-bold">{bestGuess}</span>.
+          Your best guess was <span className="font-bold">{Number(bestGuess).toLocaleString()} kr</span>.
         </p>
       </div>
     </div>
