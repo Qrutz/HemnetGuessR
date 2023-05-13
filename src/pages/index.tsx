@@ -40,7 +40,7 @@ const Home: NextPage = () => {
               </span>
 
               <Link href="/game">
-                <button className="w-full bg-slate-600  p-3 text-3xl font-extrabold text-white">
+                <button className="w-full bg-slate-600  p-3 text-xl font-extrabold text-white">
                   PLAY NOW!
                 </button>
               </Link>
