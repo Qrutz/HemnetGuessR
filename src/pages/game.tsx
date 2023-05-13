@@ -32,7 +32,7 @@ type House = {
 
 // create json for a house listing which has a price, the image below anda bunch of rooms for that house
 
-export default function game() {
+export default function Game() {
   const { register, handleSubmit, reset } = useForm<FormValues>();
   const [gameData, setGameData] = useState<gameData>({
     guesses: [],
@@ -120,7 +120,7 @@ export default function game() {
     const savedGuessess = localStorage.getItem("guesses");
     if (savedGuessess) {
       setGameData({
-        guesses: JSON.parse(savedGuessess),
+        guesses: JSON.parse(savedGuessess) as string[],
         house: gameData.house,
       });
     }
@@ -136,7 +136,7 @@ export default function game() {
   useEffect(() => {
     if (gameData.guesses.length === 6) {
       saveGameDataToLocalStorage();
-      router.push("/results");
+      router.push("/results").then().catch(null);
     }
   }, [gameData.guesses]);
 
@@ -227,7 +227,7 @@ export default function game() {
           {currentGuessIndex === gameData.guesses.length ? (
             <form
               key="guess-form"
-              onSubmit={handleGuess}
+              onSubmit={void handleGuess}
               className="rounded-xl rounded-t bg-gray-200"
             >
               <span className="flex flex-col p-4">

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { TwitterIcon, TwitterShareButton } from "react-share";
 import { BsTwitter } from "react-icons/bs";
 
-export default function results() {
+export default function Results() {
   const [bestGuess, setBestGuess] = useState<number>(0);
   const [win, setWin] = useState<boolean>(false);
 
@@ -20,7 +20,7 @@ export default function results() {
   useEffect(() => {
     // if guessess is not in local storage, router push to home
     if (!localStorage.getItem("guesses")) {
-      router.push("/");
+      router.push("/").then().catch(null);
     }
   }, []);
 
@@ -138,7 +138,7 @@ export default function results() {
 
             <span className="flex flex-col items-center justify-center rounded-md bg-green-800 py-1">
               <button
-                onClick={() => router.push(house.listingurl)}
+                onClick={() => void router.push(house.listingurl)}
                 className="p-2 text-lg text-white"
               >
                 View Listing
@@ -148,7 +148,7 @@ export default function results() {
             <span className="flex flex-col items-center justify-center rounded-md bg-green-800 py-1">
               <button
                 onClick={() =>
-                  router.push(
+                  void router.push(
                     "https://www.hemnet.se/bostader?housing_form_groups%5B%5D=vacation_homes&location_ids%5B%5D=924031"
                   )
                 }
@@ -162,7 +162,7 @@ export default function results() {
           <span className="flex flex-col justify-center space-y-4 py-2 text-center">
             <span className="flex justify-center  gap-2 ">
               <TfiGallery className="text-2xl" />
-              <h1 className="text-md font-semibold ">Today's Image Gallery</h1>
+              <h1 className="text-md font-semibold ">Todays Image Gallery</h1>
             </span>
             <h1 className="text-md font-semibold ">
               Come Play Again Tomorrow!

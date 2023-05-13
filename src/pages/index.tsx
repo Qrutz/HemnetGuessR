@@ -20,7 +20,7 @@ const Home: NextPage = () => {
         setSomeState("Play now!");
         break;
       case 6:
-        router.push("/results");
+        router.push("/results").then().catch(null);
         break;
       default:
         setSomeState("Continue");
