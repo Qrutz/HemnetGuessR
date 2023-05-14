@@ -65,7 +65,7 @@ export default function Results() {
   }
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center  bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950  to-emerald-900 font-mono">
+    <div className="bg-gradient-to-b from-sky-400 to-sky-200 flex h-screen flex-col items-center justify-center  bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950  to-emerald-900 font-mono">
       <div className="w-[30rem] rounded-lg ">
         <div className="text-center text-white">
           {win ? (
@@ -83,7 +83,7 @@ export default function Results() {
               <p className="p-3 text-xl font-bold">
                 <span className="text-black">
                   {" "}
-                  <span className="text-purple-400">The price was: </span>{" "}
+                  <span className="text-black">The price was: </span>{" "}
                   {house.price.toLocaleString() + "kr"}{" "}
                 </span>
               </p>
@@ -92,13 +92,13 @@ export default function Results() {
               <p className="p-3 text-xl font-bold">
                 <span className="text-black">
                   {" "}
-                  <span className="text-purple-400">Best guess: </span>{" "}
+                  <span className="text-black">Best guess: </span>{" "}
                   {Number(bestGuess).toLocaleString()} kr
                 </span>
               </p>
             </span>
 
-            <p className="mx-4 text-center text-lg font-semibold text-amber-400">
+            <p className="mx-4 text-center text-lg font-semibold text-white">
               Win Range: {Number(house.price * 0.95).toLocaleString()}kr -{" "}
               {Number(house.price * 1.05).toLocaleString()}kr
             </p>
@@ -116,27 +116,27 @@ export default function Results() {
 
         <div className="mt-4 rounded-lg bg-white">
           <div className="grid grid-cols-2 grid-rows-2 gap-2 p-6">
-            <span className="flex flex-col items-center justify-center rounded-lg bg-purple-400 py-6">
+            <span className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-sky-400 to-cyan-300 text-white py-6">
               <h1>Games played</h1>
               <p className="text-4xl">1</p>
             </span>
 
-            <span className="flex flex-col items-center justify-center rounded-lg bg-purple-400 py-7">
+            <span className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-sky-400 to-cyan-300 text-white py-7">
               <h1>Win percentage</h1>
               <p className="text-4xl">0%</p>
             </span>
 
-            <span className="flex flex-col items-center justify-center rounded-lg bg-purple-400 py-6">
+            <span className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-sky-400 to-cyan-300 text-white py-6">
               <h1>Current streak</h1>
               <p className="text-4xl">0</p>
             </span>
 
-            <span className="flex flex-col items-center justify-center rounded-lg bg-purple-400 py-6">
+            <span className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-sky-400 to-cyan-300 text-white py-6">
               <h1>Max streak</h1>
               <p className="text-4xl">0</p>
             </span>
 
-            <span className="flex flex-col items-center justify-center rounded-md bg-green-800 py-1">
+            <span className="flex flex-col items-center justify-center rounded-md bg-gradient-to-t from-sky-400 to-cyan-300 py-1">
               <button
                 onClick={() => void router.push(house.listingurl)}
                 className="p-2 text-lg text-white"
@@ -145,7 +145,7 @@ export default function Results() {
               </button>
             </span>
 
-            <span className="flex flex-col items-center justify-center rounded-md bg-green-800 py-1">
+            <span className="flex flex-col items-center justify-center rounded-md bg-gradient-to-t from-sky-400 to-cyan-300 py-1">
               <button
                 onClick={() =>
                   void router.push(

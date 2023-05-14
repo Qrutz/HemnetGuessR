@@ -159,15 +159,15 @@ export default function Game() {
   };
 
   return (
-    <div className="z-0 flex h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950  to-emerald-900 font-mono">
-      <div className="flex h-full w-[33rem] flex-col justify-evenly ">
+    <div className="bg-gradient-to-b from-sky-400 to-sky-200 z-0 flex h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950  to-emerald-900 font-mono">
+      <div className="container mx-auto w-[28rem] rounded-lg bg-white">
         <span className="flex flex-col gap-2 ">
           <ProgressBar progress={((currentGuessIndex + 1) / 6) * 100} />
-          <h2 className="text-4xl font-bold text-amber-300">
+          <h2 className="text-4xl font-bold text-black-800">
             CLUE #{currentGuessIndex + 1}{" "}
           </h2>
 
-          <p className="text-xl font-medium text-white">
+          <p className="text-xl font-medium text-black">
             {handleGetClue(currentGuessIndex)}
           </p>
         </span>
@@ -181,7 +181,7 @@ export default function Game() {
         </span>
         <div className="flex items-center justify-center">
           <button
-            className="flex items-center justify-between gap-2 rounded-lg bg-purple-800 px-4 py-2 text-white"
+            className="flex items-center justify-between gap-2 rounded-lg bg-gray-700 px-4 py-2 text-white"
             onClick={() => setShowImage(true)}
           >
             <p>Zoom</p>
@@ -252,7 +252,7 @@ export default function Game() {
                   </button>
                   <button
                     type="submit"
-                    className="flex-[6] rounded-md bg-green-700 py-2 text-4xl text-white"
+                    className="bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-sky-400 to-cyan-300 flex-[6] rounded-md bg-green-700 py-2 text-4xl text-white"
                   >
                     Guess
                   </button>
