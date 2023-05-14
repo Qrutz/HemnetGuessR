@@ -172,7 +172,7 @@ export default function Game() {
     if (currentGuessIndex === 0) {
       return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center opacity-20 cursor-not-allowed";
     } else {
-      return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center ";
+      return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center hover:bg-slate-400 ";
     }
   };
 
@@ -180,7 +180,7 @@ export default function Game() {
     if (currentGuessIndex === gameData.guesses.length) {
       return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center opacity-20 cursor-not-allowed";
     } else {
-      return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-slate-900 py-2 text-center hover:bg-purple-600";
+      return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-slate-900 py-2 text-center hover:bg-slate-400";
     }
   };
 
@@ -328,7 +328,7 @@ export default function Game() {
                     </button>
                     <button
                       type="submit"
-                      className="flex-[6] rounded-md bg-slate-800 py-2 text-4xl text-white"
+                      className="flex-[6] rounded-md bg-slate-800 py-2 text-4xl text-white hover:bg-slate-900"
                     >
                       Guess
                     </button>
