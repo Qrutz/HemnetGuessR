@@ -19,7 +19,7 @@ export default function Results() {
 
   useEffect(() => {
     // if guessess is not in local storage, router push to home
-    if (!localStorage.getItem("guesses")) {
+    if (!localStorage.getItem("guessess")) {
       router.push("/").then().catch(null);
     }
   }, []);
@@ -38,15 +38,14 @@ export default function Results() {
   //create function to compare the guesses to the price and return the closest guess
   function getBestGuess(): number {
     // get the guesses from local storage
-    const guesses = localStorage.getItem("guesses");
+    const guesses = localStorage.getItem("guessess");
     // if there are no guesses, return 0
     if (!guesses) {
       return 0;
     }
     let closest = 0;
-    //conver string to array of numbers,
-    const guessArray = guesses.split(",").map(Number);
-    console.log(guessArray);
+    //conver string to array of numbers, only keep the "guess" not the result
+    const guessArray = JSON.parse(guesses).map((guess: any) => guess.guess);
 
     //loop through the array and compare the numbers to the price
     for (let i = 0; i < guessArray.length; i++) {
@@ -73,7 +72,7 @@ export default function Results() {
           ) : (
             <span className="flex flex-col gap-2 py-4">
               <h1 className="text-xl font-semibold ">
-                Todays Housle was a tough one!
+                Today was a rough one :(
               </h1>
               <p className="text-md font-semibold">You lost this round</p>
             </span>

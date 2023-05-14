@@ -1,21 +1,26 @@
 import React, { use, useEffect, useState } from "react";
 import { InputBar } from "~/components/InputBar";
 import { ProgressBar } from "~/components/ProgressBar";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import json from "../../house.json";
 import { Dialog, Transition } from "@headlessui/react";
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
-import { BsZoomIn } from "react-icons/bs";
+import { BsCaretDownFill, BsCaretUpFill, BsZoomIn } from "react-icons/bs";
 
 type FormValues = {
   guess: string;
 };
 
 interface gameData {
-  guesses: string[];
+  guesses: guessObject[];
   house: House;
+}
+
+interface guessObject {
+  guess: string;
+  result?: string;
 }
 
 type House = {
@@ -40,33 +45,55 @@ export default function Game() {
   });
   const [currentGuessIndex, setCurrentGuessIndex] = useState<number>(0);
   const [showImage, setShowImage] = useState<boolean>(false);
+  const [showClueBox, setShowClueBox] = useState<boolean>(false);
   const router = useRouter();
 
   const handleGuess = handleSubmit((data) => {
+    const res = handleCompareGuessToPrice(data.guess);
+    let guessObject: guessObject = { guess: data.guess };
+    if (res === 1) {
+      // append "Too high" to the guessess array
+      guessObject.result = "Too high";
+    } else if (res === -1) {
+      // append "Too low" to the guessess array
+      guessObject.result = "Too low";
+    } else if (res === 0) {
+      // append "Correct" to the guessess array
+      guessObject.result = "Correct";
+    }
+
     setGameData((prevGameData) => {
       const newGameData = {
-        guesses: [...prevGameData.guesses, data.guess],
+        guesses: [...prevGameData.guesses, guessObject],
         house: prevGameData.house,
       };
-      localStorage.setItem("guesses", JSON.stringify(newGameData.guesses));
+
+      localStorage.setItem("guessess", JSON.stringify(newGameData.guesses));
+
       return newGameData;
     });
 
-    handleCompareGuessToPrice(data.guess);
     setCurrentGuessIndex((prevIndex) => prevIndex + 1);
   });
 
-  function handleCompareGuessToPrice(guess: string) {
+  // -1 for too low, 0 for correct, 1 for too high
+  function handleCompareGuessToPrice(guess: string): number {
     const guess1 = Number(guess);
     const price = gameData.house.price;
 
     if (guess1 === price) {
       alert("You guessed correctly!");
+      return 0;
     } else if (guess1 > price) {
       alert("Your guess is too high!");
+      // append "Too high" to the guessess array
+      return 1;
     } else if (guess1 < price) {
       alert("Your guess is too low!");
+      return -1;
     }
+
+    return 0;
   }
 
   //get clue method, first clue corresponds to presentedBy, second to location, third to rooms
@@ -87,10 +114,6 @@ export default function Game() {
     } else {
       return "No more clues!";
     }
-  }
-
-  function saveGameDataToLocalStorage() {
-    localStorage.setItem("guesses", gameData.guesses.toLocaleString());
   }
 
   function handleGoBackToLastGuess() {
@@ -117,11 +140,14 @@ export default function Game() {
   }
 
   useEffect(() => {
-    const savedGuessess = localStorage.getItem("guesses");
-    if (savedGuessess) {
-      setGameData({
-        guesses: JSON.parse(savedGuessess) as string[],
-        house: gameData.house,
+    const guesses = localStorage.getItem("guessess");
+    if (guesses) {
+      setGameData((prevGameData) => {
+        const newGameData = {
+          guesses: JSON.parse(guesses),
+          house: prevGameData.house,
+        };
+        return newGameData;
       });
     }
   }, []);
@@ -135,7 +161,6 @@ export default function Game() {
   //if guessess array length is 6 then redirect to results page
   useEffect(() => {
     if (gameData.guesses.length === 6) {
-      saveGameDataToLocalStorage();
       void router.push("/results").then().catch(null);
     }
   }, [gameData.guesses]);
@@ -225,47 +250,97 @@ export default function Game() {
           leaveTo="opacity-0"
         >
           {currentGuessIndex === gameData.guesses.length ? (
-            <form
-              key="guess-form"
-              onSubmit={handleGuess}
-              className="rounded-xl rounded-t bg-gray-200"
-            >
-              <span className="flex flex-col p-4">
-                <div className="relative flex items-center space-x-2">
-                  <span className="absolute inset-y-0 left-0 flex items-center justify-center px-5 py-4 text-2xl font-light   text-black">
-                    SEK
-                  </span>
-                  <input
-                    {...register("guess", { required: true })}
-                    placeholder="42069kr"
-                    className="w-full rounded-lg border-2 border-gray-300 py-2 pl-10 pr-3 text-center text-2xl focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-opacity-50"
-                  />
+            <>
+              <Transition
+                show={showClueBox}
+                enter="transition duration-500 ease-in-out transform"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="transition duration-500 ease-in-out transform"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <button
+                  className="flex  w-full justify-center bg-purple-700 hover:bg-purple-800"
+                  onClick={() => setShowClueBox(false)}
+                >
+                  <BsCaretDownFill className="text-2xl text-white" />
+                </button>
+                <div className="  bg-amber-400 ">
+                  {gameData.guesses.map((guess, index) => {
+                    return (
+                      <div className="flex cursor-pointer items-center justify-between border-b border-slate-500 p-2 ">
+                        <span className=" p-2 text-2xl font-bold text-purple-900">
+                          Guess #{index + 1}
+                          <p className="items-center  text-xl font-light text-black">
+                            {guess.guess}{" "}
+                          </p>
+                        </span>
+                        <span className="rounded-lg bg-purple-600 ">
+                          <p className="p-2 text-xl font-medium text-white">
+                            {" "}
+                            {guess.result}
+                          </p>
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
+              </Transition>
 
-                <div className="flex w-full items-center justify-center gap-1 py-2">
+              <form
+                key="guess-form"
+                onSubmit={handleGuess}
+                className="rounded-xl rounded-t bg-gray-200"
+              >
+                {!showClueBox ? (
                   <button
-                    type="button"
-                    onClick={handleGoBackToLastGuess}
-                    className={handleBackButtonStyle(currentGuessIndex)}
+                    className="flex  w-full justify-center bg-purple-700 hover:bg-purple-800"
+                    onClick={() => setShowClueBox(true)}
                   >
-                    <AiOutlineDoubleLeft className="text-4xl" />
+                    <BsCaretUpFill className="text-2xl text-white" />
                   </button>
-                  <button
-                    type="submit"
-                    className="flex-[6] rounded-md bg-green-700 py-2 text-4xl text-white"
-                  >
-                    Guess
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleGoToNextGuess}
-                    className={handleRightButtonStyle(currentGuessIndex)}
-                  >
-                    <AiOutlineDoubleRight className="text-4xl" />
-                  </button>
-                </div>
-              </span>
-            </form>
+                ) : (
+                  <></>
+                )}
+
+                <span className="flex flex-col p-4">
+                  <div className="relative flex items-center space-x-2">
+                    <span className="absolute inset-y-0 left-0 flex items-center justify-center px-5 py-4 text-2xl font-light   text-black">
+                      SEK
+                    </span>
+                    <input
+                      {...register("guess", { required: true })}
+                      placeholder="42069kr"
+                      className="w-full rounded-lg border-2 border-gray-300 py-2 pl-10 pr-3 text-center text-2xl focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-opacity-50"
+                    />
+                  </div>
+
+                  <div className="flex w-full items-center justify-center gap-1 py-2">
+                    <button
+                      type="button"
+                      onClick={handleGoBackToLastGuess}
+                      className={handleBackButtonStyle(currentGuessIndex)}
+                    >
+                      <AiOutlineDoubleLeft className="text-4xl" />
+                    </button>
+                    <button
+                      type="submit"
+                      className="flex-[6] rounded-md bg-green-700 py-2 text-4xl text-white"
+                    >
+                      Guess
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleGoToNextGuess}
+                      className={handleRightButtonStyle(currentGuessIndex)}
+                    >
+                      <AiOutlineDoubleRight className="text-4xl" />
+                    </button>
+                  </div>
+                </span>
+              </form>
+            </>
           ) : (
             <form
               key="current-guess-form"
