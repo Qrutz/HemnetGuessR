@@ -35,6 +35,9 @@ const config = {
         checksVoidReturn: false,
       },
     ],
+    "@typescript-eslint/no-unsafe-member-access": [
+      "off",
+    ]
   },
 };
 

@@ -1,21 +1,27 @@
 import React, { use, useEffect, useState } from "react";
 import { InputBar } from "~/components/InputBar";
 import { ProgressBar } from "~/components/ProgressBar";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import json from "../../house.json";
 import { Dialog, Transition } from "@headlessui/react";
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
-import { BsZoomIn } from "react-icons/bs";
+import { BsCaretDownFill, BsCaretUpFill, BsZoomIn } from "react-icons/bs";
+import ProgressBar2 from "~/components/progressBarV2";
 
 type FormValues = {
   guess: string;
 };
 
 interface gameData {
-  guesses: string[];
+  guesses: guessObject[];
   house: House;
+}
+
+interface guessObject {
+  guess: string;
+  result?: string;
 }
 
 type House = {
@@ -40,33 +46,55 @@ export default function Game() {
   });
   const [currentGuessIndex, setCurrentGuessIndex] = useState<number>(0);
   const [showImage, setShowImage] = useState<boolean>(false);
+  const [showClueBox, setShowClueBox] = useState<boolean>(false);
   const router = useRouter();
 
   const handleGuess = handleSubmit((data) => {
+    const res = handleCompareGuessToPrice(data.guess);
+    const guessObject: guessObject = { guess: data.guess };
+    if (res === 1) {
+      // append "Too high" to the guessess array
+      guessObject.result = "Too high";
+    } else if (res === -1) {
+      // append "Too low" to the guessess array
+      guessObject.result = "Too low";
+    } else if (res === 0) {
+      // append "Correct" to the guessess array
+      guessObject.result = "Correct";
+    }
+
     setGameData((prevGameData) => {
       const newGameData = {
-        guesses: [...prevGameData.guesses, data.guess],
+        guesses: [...prevGameData.guesses, guessObject],
         house: prevGameData.house,
       };
-      localStorage.setItem("guesses", JSON.stringify(newGameData.guesses));
+
+      localStorage.setItem("guessess", JSON.stringify(newGameData.guesses));
+
       return newGameData;
     });
 
-    handleCompareGuessToPrice(data.guess);
     setCurrentGuessIndex((prevIndex) => prevIndex + 1);
   });
 
-  function handleCompareGuessToPrice(guess: string) {
+  // -1 for too low, 0 for correct, 1 for too high
+  function handleCompareGuessToPrice(guess: string): number {
     const guess1 = Number(guess);
     const price = gameData.house.price;
 
     if (guess1 === price) {
       alert("You guessed correctly!");
+      return 0;
     } else if (guess1 > price) {
       alert("Your guess is too high!");
+      // append "Too high" to the guessess array
+      return 1;
     } else if (guess1 < price) {
       alert("Your guess is too low!");
+      return -1;
     }
+
+    return 0;
   }
 
   //get clue method, first clue corresponds to presentedBy, second to location, third to rooms
@@ -87,10 +115,6 @@ export default function Game() {
     } else {
       return "No more clues!";
     }
-  }
-
-  function saveGameDataToLocalStorage() {
-    localStorage.setItem("guesses", gameData.guesses.toLocaleString());
   }
 
   function handleGoBackToLastGuess() {
@@ -117,11 +141,14 @@ export default function Game() {
   }
 
   useEffect(() => {
-    const savedGuessess = localStorage.getItem("guesses");
-    if (savedGuessess) {
-      setGameData({
-        guesses: JSON.parse(savedGuessess) as string[],
-        house: gameData.house,
+    const guesses = localStorage.getItem("guessess");
+    if (guesses) {
+      setGameData((prevGameData) => {
+        const newGameData = {
+          guesses: JSON.parse(guesses) as guessObject[],
+          house: prevGameData.house,
+        };
+        return newGameData;
       });
     }
   }, []);
@@ -135,7 +162,6 @@ export default function Game() {
   //if guessess array length is 6 then redirect to results page
   useEffect(() => {
     if (gameData.guesses.length === 6) {
-      saveGameDataToLocalStorage();
       void router.push("/results").then().catch(null);
     }
   }, [gameData.guesses]);
@@ -146,7 +172,7 @@ export default function Game() {
     if (currentGuessIndex === 0) {
       return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center opacity-20 cursor-not-allowed";
     } else {
-      return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center ";
+      return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center hover:bg-slate-400 ";
     }
   };
 
@@ -154,34 +180,34 @@ export default function Game() {
     if (currentGuessIndex === gameData.guesses.length) {
       return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center opacity-20 cursor-not-allowed";
     } else {
-      return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-black py-2 text-center";
+      return "flex h-full flex-1 items-center justify-center rounded-xl border-2 border-slate-900 py-2 text-center hover:bg-slate-400";
     }
   };
 
   return (
-    <div className="bg-gradient-to-b from-sky-400 to-sky-200 z-0 flex h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950  to-emerald-900 font-mono">
-      <div className="container mx-auto w-[28rem] rounded-lg bg-white">
-        <span className="flex flex-col gap-2 ">
-          <ProgressBar progress={((currentGuessIndex + 1) / 6) * 100} />
-          <h2 className="text-4xl font-bold text-black-800">
+    <div className="z-0 flex h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-950  to-slate-900 font-mono">
+      <div className="flex w-[33rem] flex-col justify-evenly gap-5 ">
+        <span className="flex flex-col gap-4 ">
+          <ProgressBar2 progress={((currentGuessIndex + 1) / 6) * 100} />
+          <h2 className="text-4xl font-bold text-amber-300">
             CLUE #{currentGuessIndex + 1}{" "}
           </h2>
 
-          <p className="text-xl font-medium text-black">
+          <p className="text-xl font-medium text-white">
             {handleGetClue(currentGuessIndex)}
           </p>
         </span>
 
-        <span>
+        <span className="rounded-sm shadow-md shadow-purple-500/50">
           <img
-            className="w-full"
+            className=" w-full rounded-sm object-cover "
             src={gameData.house.images[currentGuessIndex]}
             alt=""
           />
         </span>
         <div className="flex items-center justify-center">
           <button
-            className="flex items-center justify-between gap-2 rounded-lg bg-gray-700 px-4 py-2 text-white"
+            className="flex items-center justify-between gap-2 rounded-lg bg-slate-600 px-4 py-2 text-white"
             onClick={() => setShowImage(true)}
           >
             <p>Zoom</p>
@@ -225,47 +251,101 @@ export default function Game() {
           leaveTo="opacity-0"
         >
           {currentGuessIndex === gameData.guesses.length ? (
-            <form
-              key="guess-form"
-              onSubmit={handleGuess}
-              className="rounded-xl rounded-t bg-gray-200"
-            >
-              <span className="flex flex-col p-4">
-                <div className="relative flex items-center space-x-2">
-                  <span className="absolute inset-y-0 left-0 flex items-center justify-center px-5 py-4 text-2xl font-light   text-black">
-                    SEK
-                  </span>
-                  <input
-                    {...register("guess", { required: true })}
-                    placeholder="42069kr"
-                    className="w-full rounded-lg border-2 border-gray-300 py-2 pl-10 pr-3 text-center text-2xl focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-opacity-50"
-                  />
+            <div className="relative  ">
+              <Transition
+                className="absolute bottom-[155px] left-0 right-0 "
+                show={showClueBox}
+                enter="transition duration-500 ease-in-out transform"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="transition duration-500 ease-in-out transform"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <button
+                  className="flex  w-full justify-center bg-purple-700 hover:bg-purple-800"
+                  onClick={() => setShowClueBox(false)}
+                >
+                  <BsCaretDownFill className="text-2xl text-white" />
+                </button>
+                <div className="   h-full w-full bg-slate-800 ">
+                  {gameData.guesses.map((guess, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="flex cursor-pointer items-center justify-between border-b border-slate-500 p-2 "
+                      >
+                        <span className=" p-2 text-2xl font-bold text-yellow-300">
+                          Guess #{index + 1}
+                          <p className="items-center  text-xl font-light text-white">
+                            {Number(guess.guess)}{" "}
+                          </p>
+                        </span>
+                        <span className="rounded-lg bg-purple-400 ">
+                          <p className="p-2 text-xl font-medium text-white">
+                            {" "}
+                            {guess.result}
+                          </p>
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
+              </Transition>
 
-                <div className="flex w-full items-center justify-center gap-1 py-2">
+              <form
+                key="guess-form"
+                onSubmit={handleGuess}
+                className=" rounded-xl rounded-t bg-gray-200"
+              >
+                {!showClueBox ? (
                   <button
-                    type="button"
-                    onClick={handleGoBackToLastGuess}
-                    className={handleBackButtonStyle(currentGuessIndex)}
+                    className="flex  w-full justify-center bg-purple-700 hover:bg-purple-800"
+                    onClick={() => setShowClueBox(true)}
                   >
-                    <AiOutlineDoubleLeft className="text-4xl" />
+                    <BsCaretUpFill className="text-2xl text-white" />
                   </button>
-                  <button
-                    type="submit"
-                    className="bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-sky-400 to-cyan-300 flex-[6] rounded-md bg-green-700 py-2 text-4xl text-white"
-                  >
-                    Guess
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleGoToNextGuess}
-                    className={handleRightButtonStyle(currentGuessIndex)}
-                  >
-                    <AiOutlineDoubleRight className="text-4xl" />
-                  </button>
-                </div>
-              </span>
-            </form>
+                ) : (
+                  <></>
+                )}
+
+                <span className="flex flex-col p-4">
+                  <div className="relative flex items-center space-x-2">
+                    <span className="absolute inset-y-0 left-0 flex items-center justify-center px-5 py-4 text-2xl font-light   text-black">
+                      SEK
+                    </span>
+                    <input
+                      {...register("guess", { required: true })}
+                      placeholder="xxx"
+                      className="w-full rounded-lg border-2 border-gray-300 py-2 pl-10 pr-3 text-center text-2xl focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-opacity-50"
+                    />
+                  </div>
+
+                  <div className="flex w-full items-center justify-center gap-1 py-2">
+                    <button
+                      type="button"
+                      onClick={handleGoBackToLastGuess}
+                      className={handleBackButtonStyle(currentGuessIndex)}
+                    >
+                      <AiOutlineDoubleLeft className="text-4xl" />
+                    </button>
+                    <button
+                      type="submit"
+                      className="flex-[6] rounded-md bg-slate-800 py-2 text-4xl text-white hover:bg-slate-900"
+                    >
+                      Guess
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleGoToNextGuess}
+                      className={handleRightButtonStyle(currentGuessIndex)}
+                    >
+                      <AiOutlineDoubleRight className="text-4xl" />
+                    </button>
+                  </div>
+                </span>
+              </form>
+            </div>
           ) : (
             <form
               key="current-guess-form"
@@ -284,7 +364,7 @@ export default function Game() {
 
                   <button
                     type="submit"
-                    className="flex-[6] rounded-md bg-green-700 py-2 text-3xl text-white"
+                    className="flex-[6] rounded-md bg-slate-800 py-2 text-3xl text-white"
                   >
                     BACK TO GUESSING
                   </button>
