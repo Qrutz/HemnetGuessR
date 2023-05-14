@@ -51,7 +51,7 @@ export default function Game() {
 
   const handleGuess = handleSubmit((data) => {
     const res = handleCompareGuessToPrice(data.guess);
-    let guessObject: guessObject = { guess: data.guess };
+    const guessObject: guessObject = { guess: data.guess };
     if (res === 1) {
       // append "Too high" to the guessess array
       guessObject.result = "Too high";
@@ -145,7 +145,7 @@ export default function Game() {
     if (guesses) {
       setGameData((prevGameData) => {
         const newGameData = {
-          guesses: JSON.parse(guesses),
+          guesses: JSON.parse(guesses) as guessObject[],
           house: prevGameData.house,
         };
         return newGameData;
@@ -271,7 +271,10 @@ export default function Game() {
                 <div className="   h-full w-full bg-slate-800 ">
                   {gameData.guesses.map((guess, index) => {
                     return (
-                      <div className="flex cursor-pointer items-center justify-between border-b border-slate-500 p-2 ">
+                      <div
+                        key={index}
+                        className="flex cursor-pointer items-center justify-between border-b border-slate-500 p-2 "
+                      >
                         <span className=" p-2 text-2xl font-bold text-yellow-300">
                           Guess #{index + 1}
                           <p className="items-center  text-xl font-light text-white">

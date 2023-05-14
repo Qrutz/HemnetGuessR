@@ -6,6 +6,11 @@ import { useRouter } from "next/router";
 import { TwitterIcon, TwitterShareButton } from "react-share";
 import { BsTwitter } from "react-icons/bs";
 
+interface guessObject {
+  guess: number;
+  result: string;
+}
+
 export default function Results() {
   const [bestGuess, setBestGuess] = useState<number>(0);
   const [win, setWin] = useState<boolean>(false);
@@ -44,12 +49,16 @@ export default function Results() {
       return 0;
     }
     let closest = 0;
-    //conver string to array of numbers, only keep the "guess" not the result
-    const guessArray = JSON.parse(guesses).map((guess: any) => guess.guess);
+    // convert string to array of numbers, only keep the "guess" not the result
+    const guessArray = JSON.parse(guesses) as guessObject[];
+    if (!Array.isArray(guessArray)) {
+      return 0;
+    }
+    const guessNumbers = guessArray.map((guess) => guess.guess);
 
-    //loop through the array and compare the numbers to the price
-    for (let i = 0; i < guessArray.length; i++) {
-      const guess = guessArray[i];
+    // loop through the array and compare the numbers to the price
+    for (let i = 0; i < guessNumbers.length; i++) {
+      const guess = guessNumbers[i];
       if (!guess) {
         continue;
       }
@@ -59,12 +68,11 @@ export default function Results() {
       }
     }
     // return the closest guess
-
     return closest;
   }
 
   return (
-    <div className="bg-gradient-to-b from-sky-400 to-sky-200 flex h-screen flex-col items-center justify-center  bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950  to-emerald-900 font-mono">
+    <div className="flex h-screen flex-col items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] bg-gradient-to-b from-emerald-950  from-sky-400 to-emerald-900  to-sky-200 font-mono">
       <div className="w-[30rem] rounded-lg ">
         <div className="text-center text-white">
           {win ? (
@@ -115,22 +123,22 @@ export default function Results() {
 
         <div className="mt-4 rounded-lg bg-white">
           <div className="grid grid-cols-2 grid-rows-2 gap-2 p-6">
-            <span className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-sky-400 to-cyan-300 text-white py-6">
+            <span className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-sky-400 to-cyan-300 py-6 text-white">
               <h1>Games played</h1>
               <p className="text-4xl">1</p>
             </span>
 
-            <span className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-sky-400 to-cyan-300 text-white py-7">
+            <span className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-sky-400 to-cyan-300 py-7 text-white">
               <h1>Win percentage</h1>
               <p className="text-4xl">0%</p>
             </span>
 
-            <span className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-sky-400 to-cyan-300 text-white py-6">
+            <span className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-sky-400 to-cyan-300 py-6 text-white">
               <h1>Current streak</h1>
               <p className="text-4xl">0</p>
             </span>
 
-            <span className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-sky-400 to-cyan-300 text-white py-6">
+            <span className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-sky-400 to-cyan-300 py-6 text-white">
               <h1>Max streak</h1>
               <p className="text-4xl">0</p>
             </span>
