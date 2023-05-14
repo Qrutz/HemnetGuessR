@@ -8,6 +8,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
 import { BsCaretDownFill, BsCaretUpFill, BsZoomIn } from "react-icons/bs";
+import ProgressBar2 from "~/components/progressBarV2";
 
 type FormValues = {
   guess: string;
@@ -184,10 +185,10 @@ export default function Game() {
   };
 
   return (
-    <div className="z-0 flex h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950  to-emerald-900 font-mono">
-      <div className="flex h-full w-[33rem] flex-col justify-evenly ">
-        <span className="flex flex-col gap-2 ">
-          <ProgressBar progress={((currentGuessIndex + 1) / 6) * 100} />
+    <div className="z-0 flex h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-950  to-slate-900 font-mono">
+      <div className="flex w-[33rem] flex-col justify-evenly gap-5 ">
+        <span className="flex flex-col gap-4 ">
+          <ProgressBar2 progress={((currentGuessIndex + 1) / 6) * 100} />
           <h2 className="text-4xl font-bold text-amber-300">
             CLUE #{currentGuessIndex + 1}{" "}
           </h2>
@@ -197,16 +198,16 @@ export default function Game() {
           </p>
         </span>
 
-        <span>
+        <span className="rounded-sm shadow-md shadow-purple-500/50">
           <img
-            className="w-full"
+            className=" w-full rounded-sm object-cover "
             src={gameData.house.images[currentGuessIndex]}
             alt=""
           />
         </span>
         <div className="flex items-center justify-center">
           <button
-            className="flex items-center justify-between gap-2 rounded-lg bg-purple-800 px-4 py-2 text-white"
+            className="flex items-center justify-between gap-2 rounded-lg bg-slate-600 px-4 py-2 text-white"
             onClick={() => setShowImage(true)}
           >
             <p>Zoom</p>
@@ -250,8 +251,9 @@ export default function Game() {
           leaveTo="opacity-0"
         >
           {currentGuessIndex === gameData.guesses.length ? (
-            <>
+            <div className="relative  ">
               <Transition
+                className="absolute bottom-[155px] left-0 right-0 "
                 show={showClueBox}
                 enter="transition duration-500 ease-in-out transform"
                 enterFrom="opacity-0 scale-95"
@@ -266,17 +268,17 @@ export default function Game() {
                 >
                   <BsCaretDownFill className="text-2xl text-white" />
                 </button>
-                <div className="  bg-amber-400 ">
+                <div className="   h-full w-full bg-slate-800 ">
                   {gameData.guesses.map((guess, index) => {
                     return (
                       <div className="flex cursor-pointer items-center justify-between border-b border-slate-500 p-2 ">
-                        <span className=" p-2 text-2xl font-bold text-purple-900">
+                        <span className=" p-2 text-2xl font-bold text-yellow-300">
                           Guess #{index + 1}
-                          <p className="items-center  text-xl font-light text-black">
-                            {guess.guess}{" "}
+                          <p className="items-center  text-xl font-light text-white">
+                            {Number(guess.guess)}{" "}
                           </p>
                         </span>
-                        <span className="rounded-lg bg-purple-600 ">
+                        <span className="rounded-lg bg-purple-400 ">
                           <p className="p-2 text-xl font-medium text-white">
                             {" "}
                             {guess.result}
@@ -291,7 +293,7 @@ export default function Game() {
               <form
                 key="guess-form"
                 onSubmit={handleGuess}
-                className="rounded-xl rounded-t bg-gray-200"
+                className=" rounded-xl rounded-t bg-gray-200"
               >
                 {!showClueBox ? (
                   <button
@@ -311,7 +313,7 @@ export default function Game() {
                     </span>
                     <input
                       {...register("guess", { required: true })}
-                      placeholder="42069kr"
+                      placeholder="xxx"
                       className="w-full rounded-lg border-2 border-gray-300 py-2 pl-10 pr-3 text-center text-2xl focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-opacity-50"
                     />
                   </div>
@@ -326,7 +328,7 @@ export default function Game() {
                     </button>
                     <button
                       type="submit"
-                      className="flex-[6] rounded-md bg-green-700 py-2 text-4xl text-white"
+                      className="flex-[6] rounded-md bg-slate-800 py-2 text-4xl text-white"
                     >
                       Guess
                     </button>
@@ -340,7 +342,7 @@ export default function Game() {
                   </div>
                 </span>
               </form>
-            </>
+            </div>
           ) : (
             <form
               key="current-guess-form"
