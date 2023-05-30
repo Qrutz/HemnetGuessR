@@ -106,15 +106,14 @@ def scrape_hemnet_listing(url):
         "images": images
     }
 
-    # print the data
-    print(data)
-
     # save the data in a json file
     with open('data.json', 'w') as outfile:
         json.dump(data, outfile, indent=4)
 
     # close the driver
     driver.close()
+
+    return data
 
 
 if __name__ == "__main__":

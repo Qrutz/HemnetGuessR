@@ -1,0 +1,74 @@
+1685475839454	geckodriver	INFO	Listening on 127.0.0.1:41611
+1685475839458	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "34469" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileUctdCI"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1685475839677	Marionette	INFO	Marionette enabled
+1685475839681	Marionette	INFO	Listening on port 45481
+WebDriver BiDi listening on ws://127.0.0.1:34469
+Read port: 45481
+1685475839907	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:34469/devtools/browser/cb7db121-5c74-4ba4-ae9e-190397563fb1
+libEGL warning: egl: failed to create dri2 screen
+JavaScript warning: https://pagead2.googlesyndication.com/bg/9rqtaVZiiC_7YLKwh7YBfT4gwbCPSzX7QNXGZKOGVto.js line 2 > eval line 6342 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1685475855713	Marionette	INFO	Stopped listening on port 45481
+[Child 812678, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 812678, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 812678, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 812678, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 812678, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 812678, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 812678, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 812678, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+1685475877633	geckodriver	INFO	Listening on 127.0.0.1:53487
+1685475877636	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "44933" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileGHwHr8"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1685475878002	Marionette	INFO	Marionette enabled
+1685475878006	Marionette	INFO	Listening on port 33257
+Read port: 33257
+WebDriver BiDi listening on ws://127.0.0.1:44933
+1685475878104	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:44933/devtools/browser/55e2448b-7ed1-4187-9538-7e875c311b92
+libEGL warning: egl: failed to create dri2 screen
+JavaScript warning: https://pagead2.googlesyndication.com/bg/9rqtaVZiiC_7YLKwh7YBfT4gwbCPSzX7QNXGZKOGVto.js line 2 > eval line 5899 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1685475896248	Marionette	INFO	Stopped listening on port 33257
+[Child 813827, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 813827, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 813827, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 813827, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 813827, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 813827, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 813827, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 813827, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1685475951983	geckodriver	INFO	Listening on 127.0.0.1:51747
+1685475951988	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "49029" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileYKw17p"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1685475952570	Marionette	INFO	Marionette enabled
+1685475952573	Marionette	INFO	Listening on port 44059
+Read port: 44059
+WebDriver BiDi listening on ws://127.0.0.1:49029
+1685475952722	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:49029/devtools/browser/1912be6d-da2f-4201-b9cd-700c2ce24392
+JavaScript warning: https://pagead2.googlesyndication.com/bg/9rqtaVZiiC_7YLKwh7YBfT4gwbCPSzX7QNXGZKOGVto.js line 2 > eval line 6961 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1685475969370	Marionette	INFO	Stopped listening on port 44059
+[Child 815730, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 815730, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 815730, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 815730, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 815730, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 815730, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 815730, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+[Child 815730, Main Thread] WARNING: JSWindowActorChild::SendRawMessage (Conduits, ConduitClosed) not sent: !CanSend() || !mManager || !mManager->CanSend(): file /build/firefox-HNs9Ru/firefox-113.0.1+build1/dom/ipc/jsactor/JSWindowActorChild.cpp:57
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
