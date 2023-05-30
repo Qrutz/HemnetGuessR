@@ -26,7 +26,9 @@ urls = [
     "https://www.hemnet.se/bostad/radhus-5rum-boras-boras-kommun-hogloftsgatan-5-20055235",
     "https://www.hemnet.se/bostad/gard-knared-laholms-kommun-jons-petters-gard,-tralshult-55-20059896",
     "https://www.hemnet.se/bostad/lagenhet-1rum-torpa-jonkopings-kommun-erik-dahlbergsgatan-4-16835522"
-    "https://www.hemnet.se/bostad/fritidsboende-2rum-bjorsjo-avesta-kommun-bjorsjo-11-20059915"
+    "https://www.hemnet.se/bostad/fritidsboende-2rum-bjorsjo-avesta-kommun-bjorsjo-11-20059915",
+    "https://www.hemnet.se/bostad/villa-6rum-gustavsberg-karlstads-kommun-alfens-vag-37-19971258",
+    "https://www.hemnet.se/bostad/radhus-4rum-kristineberg-boras-kommun-sparrfeltsgatan-234-20049835"
 ]
 
 

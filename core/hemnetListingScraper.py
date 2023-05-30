@@ -35,8 +35,25 @@ def scrape_hemnet_listing(url):
         By.CLASS_NAME, "property-attributes-table__row")
 
     # set all variables to None so we don't get an error if we don't find the element
-    bostadstyp, upplatelseform, antalrum, boarea, Biarea, Tomtarea, byggar, driftkostnad, Forening, Avgift, PrisM = [
-        None] * 11
+    price, namn, kommun, realtor, bostadstyp, upplatelseform, antalrum, boarea, Biarea, Tomtarea, byggar, driftkostnad, Forening, Avgift, PrisM = [
+        None] * 15
+    # find h1 with class qa-property-heading hcl-heading hcl-heading--size2
+    namn = driver.find_element(
+        By.CLASS_NAME, "qa-property-heading").text
+
+    kommun = driver.find_element(
+        By.CLASS_NAME, "property-address__area").text
+
+    realtor = driver.find_element(
+        By.CLASS_NAME, "broker-card__info").text
+    # splice and get the third element
+    realtor = realtor.split()[4]
+    print(realtor)
+
+    priceString = driver.find_element(
+        By.CLASS_NAME, "property-info__price").text
+    # return priceString as int
+    price = int(priceString.replace("kr", "").replace(" ", ""))
 
     # if the div has a dt child with class property-attributes-table__label that has text "Bostadstyp" then take the next sibling dd and get the text
     for div in divs:
@@ -51,14 +68,20 @@ def scrape_hemnet_listing(url):
             upplatelseform = value
         elif lmao.text == "Antal rum":
             antalrum = value
+            # return antalrum as int
+            antalrum = int(antalrum.replace("rum", ""))
         elif lmao.text == "Boarea":
             boarea = value
+            # return boarea as int
+            boarea = int(boarea.replace("m²", ""))
         elif lmao.text == "Biarea":
             Biarea = value
         elif lmao.text == "Tomtarea":
             Tomtarea = value
         elif lmao.text == "Byggår":
             byggar = value
+            # return byggar as int
+            byggar = int(byggar)
         elif lmao.text == "Driftkostnad":
             driftkostnad = value
         elif lmao.text == "Förening":
@@ -92,18 +115,15 @@ def scrape_hemnet_listing(url):
 
     # create a json object with all the data
     data = {
-        "bostadstyp": bostadstyp,
-        "upplatelseform": upplatelseform,
-        "antalrum": antalrum,
-        "boarea": boarea,
-        "Biarea": Biarea,
-        "Tomtarea": Tomtarea,
-        "byggar": byggar,
-        "driftkostnad": driftkostnad,
-        "Forening": Forening,
-        "Avgift": Avgift,
-        "PrisM": PrisM,
-        "images": images
+        "price": price,
+        "listingurl": url,
+        "name": namn,
+        "presentedBy": realtor,
+        "location": kommun,
+        "rooms": antalrum,
+        "size": boarea,
+        "buildingYear": byggar,
+        "images": images,
     }
 
     # save the data in a json file
