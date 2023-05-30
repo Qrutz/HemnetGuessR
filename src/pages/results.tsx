@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import house from "../../house.json";
+import json2 from "../.././core/data.json";
 import { IoShareOutline } from "react-icons/io5";
 import { TfiGallery } from "react-icons/tfi";
 import { useRouter } from "next/router";
@@ -32,7 +33,7 @@ export default function Results() {
   function checkIfUserWon() {
     // get the price from the house.json file
     const bestGuess = getBestGuess();
-    const price = house.price;
+    const price = json2.price;
     // if bestGuess is +- 5% of the price, the user wins
     if (bestGuess >= price * 0.95 && bestGuess <= price * 1.05) {
       return true;
@@ -91,7 +92,7 @@ export default function Results() {
                 <span className="text-black">
                   {" "}
                   <span className="text-black">The price was: </span>{" "}
-                  {house.price.toLocaleString() + "kr"}{" "}
+                  {json2.price.toLocaleString() + "kr"}{" "}
                 </span>
               </p>
             </span>
@@ -106,8 +107,8 @@ export default function Results() {
             </span>
 
             <p className="mx-4 text-center text-lg font-semibold text-white">
-              Win Range: {Number(house.price * 0.95).toLocaleString()}kr -{" "}
-              {Number(house.price * 1.05).toLocaleString()}kr
+              Win Range: {Number(json2.price * 0.95).toLocaleString()}kr -{" "}
+              {Number(json2.price * 1.05).toLocaleString()}kr
             </p>
           </div>
         </div>
@@ -145,7 +146,7 @@ export default function Results() {
 
             <span className="flex flex-col items-center justify-center rounded-md bg-gradient-to-t from-sky-400 to-cyan-300 py-1">
               <button
-                onClick={() => void router.push(house.listingurl)}
+                onClick={() => void router.push(json2.listingurl)}
                 className="p-2 text-lg text-white"
               >
                 View Listing

@@ -4,6 +4,7 @@ import { ProgressBar } from "~/components/ProgressBar";
 import { set, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import json from "../../house.json";
+import json2 from "../.././core/data.json";
 import { Dialog, Transition } from "@headlessui/react";
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
@@ -42,7 +43,7 @@ export default function Game() {
   const { register, handleSubmit, reset } = useForm<FormValues>();
   const [gameData, setGameData] = useState<gameData>({
     guesses: [],
-    house: json,
+    house: json2,
   });
   const [currentGuessIndex, setCurrentGuessIndex] = useState<number>(0);
   const [showImage, setShowImage] = useState<boolean>(false);

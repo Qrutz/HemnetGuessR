@@ -72,8 +72,8 @@ def scrape_hemnet_listing(url):
             antalrum = int(antalrum.replace("rum", ""))
         elif lmao.text == "Boarea":
             boarea = value
-            # return boarea as int
-            boarea = int(boarea.replace("m²", ""))
+            # return boarea as int and round to nearest integer
+            boarea = int(boarea.replace("m²", "").replace(",", ""))
         elif lmao.text == "Biarea":
             Biarea = value
         elif lmao.text == "Tomtarea":
@@ -112,6 +112,8 @@ def scrape_hemnet_listing(url):
     # save all images that contain bilder.hemnet.se
     images = [image.get_attribute("src") for image in images if image.get_attribute(
         "src") is not None and "bilder.hemnet.se" in image.get_attribute("src")]
+    # filter out images that contain broker_logo or broker_banner or broker_profile
+    images = [image for image in images if "broker_logo" not in image and "broker_banner" not in image and "broker_profile" not in image and "itemgallery_cut" not in image and "itemgallery" not in image]
 
     # create a json object with all the data
     data = {
