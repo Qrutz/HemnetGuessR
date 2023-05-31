@@ -3,6 +3,8 @@ import random
 from sched import scheduler
 import threading
 import time
+from pymongo import MongoClient
+from pymongo.server_api import ServerApi
 import schedule
 
 
@@ -10,10 +12,22 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 from hemnetListingScraper import scrape_hemnet_listing
+from get100latest import getlatest
 
 app = Flask(__name__)
 # make it so everyone has access to the api
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+
+uri = "mongodb+srv://qrutz:3oncTSNMVrXNooZR@cluster0.3qfsmzw.mongodb.net/HemnetAPI"
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
 
 
 data = {}
@@ -54,14 +68,30 @@ def retreieveJsonData():
 
 @app.route('/api/getRandomListing', methods=['GET'])
 def getRandomListing():
-    # get the url from the request and scrape the data
-    # import json file from data.json
-    # return the data
-
     data = retreieveJsonData()
     return jsonify(data)
 
 
+@app.route('/api/getListing', methods=['POST'])
+def getListing():
+    url = request.json['url']
+    data = scrape_hemnet_listing(url)
+    # if we recieved data then print it to the console
+    if data:
+        return jsonify(data)
+    else:
+        return jsonify({"error": "No data found"})
+
+# create router for scraping x number of listings from the first page, x should be a parameter
+
+
+@app.route('/api/ScrapeNewestListings', methods=['POST'])
+def scrapeNewestListings():
+
+    count = request.json['count']
+    data = getlatest(count)
+    return jsonify(data)
+
+
 if __name__ == "__main__":
-    threading.Thread(target=scrape_job).start()
-    app.run()
+    app.run(debug=True)

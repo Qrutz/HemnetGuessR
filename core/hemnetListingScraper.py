@@ -7,12 +7,14 @@ from selenium.webdriver.common.keys import Keys
 
 
 def scrape_hemnet_listing(url):
-    driver = webdriver.Firefox()
+    options = webdriver.FirefoxOptions()
+    options.add_argument("--headless")
+    driver = webdriver.Firefox(options=options)
     driver.get(url)
-    time.sleep(5)
+    time.sleep(2)
 
     # FIND BUTTON WITH TEXT THAT SAYS "SÖK"
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(2)
 
     # set a cookie with the name uc_user_interaction to true
     driver.add_cookie({"name": "uc_user_interaction", "value": "true"})
@@ -26,7 +28,7 @@ def scrape_hemnet_listing(url):
     # find a span with class "property-gallery__button-label"
     dd = driver.find_elements(By.CLASS_NAME, "property-gallery__button-label")
     for d in dd:
-        if d.text != "Planritning":
+        if d.text != "Planritning" and d.text != '3D':
             # parse the text by splitting it on empty spaces and then take the first element
             imagecount = int(d.text.split()[0])
 
@@ -48,7 +50,6 @@ def scrape_hemnet_listing(url):
         By.CLASS_NAME, "broker-card__info").text
     # splice and get the third element
     realtor = realtor.split()[4]
-    print(realtor)
 
     priceString = driver.find_element(
         By.CLASS_NAME, "property-info__price").text
@@ -68,8 +69,9 @@ def scrape_hemnet_listing(url):
             upplatelseform = value
         elif lmao.text == "Antal rum":
             antalrum = value
-            # return antalrum as int
-            antalrum = int(antalrum.replace("rum", ""))
+            # return antalrum as int, make sure to remove the word "rum" and account for the fact that there might be a half room
+            antalrum = float(antalrum.replace("rum", "").replace(",", "."))
+
         elif lmao.text == "Boarea":
             boarea = value
             # return boarea as int and round to nearest integer
@@ -81,7 +83,7 @@ def scrape_hemnet_listing(url):
         elif lmao.text == "Byggår":
             byggar = value
             # return byggar as int
-            byggar = int(byggar)
+            byggar = (byggar)
         elif lmao.text == "Driftkostnad":
             driftkostnad = value
         elif lmao.text == "Förening":
@@ -104,7 +106,7 @@ def scrape_hemnet_listing(url):
     for _ in range(imagecount):
         body.send_keys(Keys.PAGE_DOWN)
 
-    time.sleep(5)
+    time.sleep(2)
 
     # find all images
     images = driver.find_elements(By.TAG_NAME, "img")
@@ -128,12 +130,7 @@ def scrape_hemnet_listing(url):
         "images": images,
     }
 
-    # save the data in a json file
-    with open('data.json', 'w') as outfile:
-        json.dump(data, outfile, indent=4)
-
-    # close the driver
-    driver.close()
+    # add the data to a json file, add it dont overwrite it
 
     return data
 
