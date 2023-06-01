@@ -23,21 +23,8 @@ def ScrapeXLatest(max):
     except Exception as e:
         print(e)
 
-    driver = webdriver.Firefox()
+    driver = webdriver.Chrome()
     driver.get("https://www.hemnet.se/bostader")
-    time.sleep(2)
-
-    # FIND BUTTON WITH TEXT THAT SAYS "SÖK"
-    driver.implicitly_wait(3)
-
-    # set a cookie with the name uc_user_interaction to true
-    driver.add_cookie({"name": "uc_user_interaction", "value": "true"})
-
-    # set local storage to true
-    driver.execute_script(
-        "window.localStorage.setItem('uc_user_interaction', 'true');")
-
-    driver.refresh()
 
     # find a li with class normal-results__hit js-normal-list-item
     li = driver.find_elements(By.CLASS_NAME, "js-listing-card-link")
