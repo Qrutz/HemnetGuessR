@@ -23,7 +23,9 @@ def ScrapeXLatest(max):
     except Exception as e:
         print(e)
 
-    driver = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+
+    driver = webdriver.Chrome(options=options)
     driver.get("https://www.hemnet.se/bostader")
 
     # find a li with class normal-results__hit js-normal-list-item

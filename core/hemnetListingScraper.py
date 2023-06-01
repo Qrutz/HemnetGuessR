@@ -8,19 +8,20 @@ from selenium.webdriver.common.keys import Keys
 
 def scrape_hemnet_listing(url):
     options = webdriver.ChromeOptions()
-    # options.add_argument("--headless")
     driver = webdriver.Chrome(options=options)
     driver.get(url)
+    # needed only to handle cookie popup
+    time.sleep(1)
 
     # FIND BUTTON WITH TEXT THAT SAYS "SÖK"
     driver.implicitly_wait(1)
 
     # UNCOMMENT BELOW IF YOU GET A COOKIE POPUP HINDRING THE SCROLLING
 
-    # driver.add_cookie({"name": "uc_user_interaction", "value": "true"})
-    # driver.execute_script(
-    #     "window.localStorage.setItem('uc_user_interaction', 'true');")
-    # driver.refresh()
+    driver.add_cookie({"name": "uc_user_interaction", "value": "true"})
+    driver.execute_script(
+        "window.localStorage.setItem('uc_user_interaction', 'true');")
+    driver.refresh()
 
     # find a span with class "property-gallery__button-label"
     listingbuttons = driver.find_elements(
@@ -49,7 +50,7 @@ def scrape_hemnet_listing(url):
     kommun = driver.find_element(
         By.CLASS_NAME, "property-address__area").text
 
-    priceString = driver.find_element(
+    price = driver.find_element(
         By.CLASS_NAME, "property-info__price").text
 
     # if the div has a dt child with class property-attributes-table__label that has text "Bostadstyp" then take the next sibling dd and get the text
@@ -110,7 +111,7 @@ def scrape_hemnet_listing(url):
         "BoArea": boarea,
         "Tomtarea": Tomtarea,
         "Balkong": Balkong,
-        "Pris": priceString,
+        "Pris": price,
         "ListingURL": url,
         "Byggar": byggar,
         "Forening": Forening,
