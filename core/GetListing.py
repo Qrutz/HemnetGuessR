@@ -122,6 +122,8 @@ def scrape_hemnet_listing(url):
     # REMOVE ALL NONE VALUES, THEY JUST CLUTTER THE JSON FILE
     data = {k: v for k, v in data.items() if v is not None}
 
+    driver.close()
+
     # add the data to a json file, add it dont overwrite it
     print(json.dumps(data, indent=4))
     return data
