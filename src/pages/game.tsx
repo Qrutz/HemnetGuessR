@@ -144,7 +144,7 @@ export default function Game() {
     if (gameData.guesses.length === 6) {
       void router.push("/results").then().catch(null);
     }
-  }, [gameData.guesses]);
+  }, [gameData.guesses, router]);
 
   useEffect(() => {
     const guesses = localStorage.getItem("guessess");
@@ -163,7 +163,7 @@ export default function Game() {
   useEffect(() => {
     reset({ guess: "" });
     setCurrentGuessIndex(gameData.guesses.length);
-  }, [gameData.guesses]);
+  }, [gameData.guesses, reset]);
 
   //if guessess array length is 6 then redirect to results page
 

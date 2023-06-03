@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import house from "../../house.json";
 import json from "../../house.json";
-import { IoShareOutline } from "react-icons/io5";
 import { TfiGallery } from "react-icons/tfi";
 import { useRouter } from "next/router";
-import { TwitterIcon, TwitterShareButton } from "react-share";
+import { TwitterShareButton } from "react-share";
 import { BsTwitter } from "react-icons/bs";
 
 interface guessObject {
@@ -21,14 +20,14 @@ export default function Results() {
   useEffect(() => {
     setBestGuess(getBestGuess());
     setWin(checkIfUserWon());
-  }, []);
+  }, [checkIfUserWon]);
 
   useEffect(() => {
     // if guessess is not in local storage, router push to home
     if (!localStorage.getItem("guessess")) {
       router.push("/").then().catch(null);
     }
-  }, []);
+  }, [router]);
 
   function checkIfUserWon() {
     // get the price from the house.json file
