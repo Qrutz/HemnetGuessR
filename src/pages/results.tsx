@@ -5,13 +5,19 @@ import { TfiGallery } from "react-icons/tfi";
 import { useRouter } from "next/router";
 import { TwitterShareButton } from "react-share";
 import { BsTwitter } from "react-icons/bs";
+import { API } from "aws-amplify";
+import { HouseListing } from "./game";
 
 interface guessObject {
   guess: number;
   result: string;
 }
 
-export default function Results() {
+export default function Results({
+  apiResponse,
+}: {
+  apiResponse: HouseListing;
+}) {
   const [bestGuess, setBestGuess] = useState<number>(0);
   const [win, setWin] = useState<boolean>(false);
 
@@ -32,7 +38,7 @@ export default function Results() {
   function checkIfUserWon() {
     // get the price from the house.json file
     const bestGuess = getBestGuess();
-    const price = json.price;
+    const price = apiResponse.Pris;
     // if bestGuess is +- 5% of the price, the user wins
     if (bestGuess >= price * 0.95 && bestGuess <= price * 1.05) {
       return true;
@@ -91,7 +97,7 @@ export default function Results() {
                 <span className="text-black">
                   {" "}
                   <span className="text-black">The price was: </span>{" "}
-                  {json.price.toLocaleString() + "kr"}{" "}
+                  {apiResponse.Pris.toLocaleString() + "kr"}{" "}
                 </span>
               </p>
             </span>
@@ -106,8 +112,8 @@ export default function Results() {
             </span>
 
             <p className="mx-4 text-center text-lg font-semibold text-white">
-              Win Range: {Number(json.price * 0.95).toLocaleString()}kr -{" "}
-              {Number(json.price * 1.05).toLocaleString()}kr
+              Win Range: {Number(apiResponse.Pris * 0.95).toLocaleString()}kr -{" "}
+              {Number(apiResponse.Pris * 1.05).toLocaleString()}kr
             </p>
           </div>
         </div>
@@ -145,7 +151,7 @@ export default function Results() {
 
             <span className="flex flex-col items-center justify-center rounded-md bg-gradient-to-t from-sky-400 to-cyan-300 py-1">
               <button
-                onClick={() => void router.push(json.listingurl)}
+                onClick={() => void router.push(apiResponse.ListingURL)}
                 className="p-2 text-lg text-white"
               >
                 View Listing
@@ -180,6 +186,30 @@ export default function Results() {
     </div>
   );
 }
-{
-  /* {Number(bestGuess).toLocaleString()} kr */
-}
+
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+export async function getServerSideProps() {
+  try {
+    const apiResponse = await API.get("listingAPI", "/items", {
+      headers: {},
+      response: true,
+    }).then((response) => response.data.Items[0]);
+
+    return {
+      props: {
+        apiResponse,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data from the API:", error);
+    return {
+      props: {
+        apiResponse: null,
+      },
+    };
+  }
+} /* eslint-enable @typescript-eslint/no-unsafe-assignment */
+/* eslint-enable @typescript-eslint/no-unsafe-member-access */
+/* eslint-enable @typescript-eslint/no-unsafe-return */

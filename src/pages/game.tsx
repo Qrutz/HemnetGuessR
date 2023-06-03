@@ -13,8 +13,7 @@ import { ImCross } from "react-icons/im";
 import { BsCaretDownFill, BsCaretUpFill, BsZoomIn } from "react-icons/bs";
 import ProgressBar2 from "~/components/progressBarV2";
 import { QueryClient, useQuery } from "react-query";
-
-Amplify.configure({ ...awsconfig, ssr: true });
+import { NextApiRequest } from "next";
 
 type FormValues = {
   guess: string;
@@ -22,7 +21,7 @@ type FormValues = {
 
 interface gameData {
   guesses: guessObject[];
-  house: House;
+  house: HouseListing;
 }
 
 interface guessObject {
@@ -42,14 +41,35 @@ type House = {
   images: string[];
 };
 
+export type HouseListing = {
+  Titel: string;
+  ListingURL: string;
+  Bostadstyp: string;
+  Pris: number;
+  BoArea: string;
+  TomtArea: string;
+  Lokation: string;
+  "Antal rum": string;
+  Byggar: string;
+  Driftkostnad: string;
+  Bilder: string[];
+};
+
 // create json for a house listing which has a price, the image below anda bunch of rooms for that house
 
-export default function Game({ house }: { house: House }) {
+export default function Game({ apiResponse }: { apiResponse: HouseListing }) {
   const { register, handleSubmit, reset } = useForm<FormValues>();
   const [gameData, setGameData] = useState<gameData>({
     guesses: [],
-    house: house,
+    house: apiResponse,
   });
+  // API.get("listingAPI", "/items", {
+  //   headers: {},
+  //   response: true,
+  // }).then((response) => {
+  //   console.log(response.data.Items[0]);
+  // });
+
   const [currentGuessIndex, setCurrentGuessIndex] = useState<number>(0);
   const [showImage, setShowImage] = useState<boolean>(false);
   const [showClueBox, setShowClueBox] = useState<boolean>(false);
@@ -88,7 +108,7 @@ export default function Game({ house }: { house: House }) {
   // -1 for too low, 0 for correct, 1 for too high
   function handleCompareGuessToPrice(guess: string): number {
     const guess1 = Number(guess);
-    const price = gameData.house.price;
+    const price = gameData.house.Pris;
 
     if (guess1 === price) {
       alert("You guessed correctly!");
@@ -109,17 +129,17 @@ export default function Game({ house }: { house: House }) {
   function handleGetClue(clue: number): string {
     // if current guess index is 0, return presentedBy
     if (clue === 0) {
-      return "Bostadstyp: " + gameData.house.bostadstyp;
+      return "Bostadstyp: " + gameData.house.Bostadstyp;
     } else if (clue === 1) {
-      return "Lokation: " + gameData.house.location;
+      return "Lokation: " + gameData.house.Lokation;
     } else if (clue === 2) {
-      return "BoArea " + gameData.house.size.toString();
+      return "BoArea " + gameData.house.BoArea;
     } else if (clue === 3) {
-      return "Byggår: " + gameData.house.buildingYear.toString();
+      return "Byggår: " + gameData.house.Byggar;
     } else if (clue === 4) {
-      return "Antal rum: " + gameData.house.rooms.toString();
+      return "Antal rum: " + gameData.house["Antal rum"];
     } else if (clue === 5) {
-      return gameData.house.name;
+      return gameData.house.Titel;
     }
     return "";
   }
@@ -208,7 +228,7 @@ export default function Game({ house }: { house: House }) {
         <span className="rounded-sm ">
           <Image
             alt="house image"
-            src={gameData.house.images[currentGuessIndex] as string}
+            src={gameData.house.Bilder[currentGuessIndex] as string}
             width={500}
             height={500}
           />
@@ -238,7 +258,7 @@ export default function Game({ house }: { house: House }) {
             </div>
             <div className="flex w-[80%] items-center justify-center rounded-lg ">
               <Image
-                src={gameData.house.images[currentGuessIndex] as string}
+                src={gameData.house.Bilder[currentGuessIndex] as string}
                 alt="house image"
                 width={500}
                 height={500}
@@ -431,16 +451,30 @@ export default function Game({ house }: { house: House }) {
 }
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 export async function getServerSideProps() {
-  const { data } = await API.get("/listingAPI", "/items", {
-    headers: {},
-    response: true,
-  });
-  return {
-    props: {
-      items: data.body,
-    },
-  };
+  try {
+    const apiResponse = await API.get("listingAPI", "/items", {
+      headers: {},
+      response: true,
+    }).then((response) => response.data.Items[0]);
+
+    return {
+      props: {
+        apiResponse,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data from the API:", error);
+    return {
+      props: {
+        apiResponse: null,
+      },
+    };
+  }
 }
 
 /* eslint-enable @typescript-eslint/no-unsafe-assignment */
+/* eslint-enable @typescript-eslint/no-unsafe-member-access */
+/* eslint-enable @typescript-eslint/no-unsafe-return */

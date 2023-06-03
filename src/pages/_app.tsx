@@ -5,6 +5,7 @@ import { Amplify, API } from "aws-amplify";
 import awsconfig from "../aws-exports";
 
 Amplify.configure({ ...awsconfig, ssr: true });
+API.configure(awsconfig);
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (

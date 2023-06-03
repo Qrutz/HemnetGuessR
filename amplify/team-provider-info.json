@@ -15,7 +15,7 @@
       "function": {
         "getListing": {
           "deploymentBucketName": "amplify-amplifyb63ad56d85da4-staging-153443-deployment",
-          "s3Key": "amplify-builds/getListing-6a6939724b7352494276-build.zip"
+          "s3Key": "amplify-builds/getListing-7678424d6944566f3754-build.zip"
         }
       },
       "api": {
