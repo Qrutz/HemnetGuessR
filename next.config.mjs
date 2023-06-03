@@ -18,5 +18,16 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "bilder.hemnet.se",
+   
+      }
+    ],
+    domains: ["bilder.hemnet.se"],
+  },
 };
 export default config;

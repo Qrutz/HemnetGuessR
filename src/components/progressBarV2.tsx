@@ -15,7 +15,7 @@ const ProgressBar2: React.FC<ProgressBarProps> = ({ progress }) => {
   return (
     <div className="relative h-3 w-full overflow-hidden rounded-full bg-gray-200">
       <div
-        className="absolute bottom-0 left-0 top-0 bg-purple-600 transition-all duration-500 ease-out"
+        className="absolute bottom-0 left-0 top-0 bg-green-500 transition-all duration-500 ease-out"
         style={{
           width: `${progress}%`,
           transform: `translateX(${prevProgress - progress}%)`,

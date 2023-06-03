@@ -1,10 +1,9 @@
-import React, { use, useEffect, useState } from "react";
-import { InputBar } from "~/components/InputBar";
-import { ProgressBar } from "~/components/ProgressBar";
-import { set, useForm } from "react-hook-form";
+import React, { type ChangeEvent, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import json from "../../house.json";
-import json2 from "../.././core/data.json";
+import Image from "next/image";
+
 import { Dialog, Transition } from "@headlessui/react";
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
@@ -29,7 +28,7 @@ type House = {
   price: number;
   listingurl: string;
   name: string;
-  presentedBy: string;
+  bostadstyp: string;
   location: string;
   rooms: number;
   size: number;
@@ -43,7 +42,7 @@ export default function Game() {
   const { register, handleSubmit, reset } = useForm<FormValues>();
   const [gameData, setGameData] = useState<gameData>({
     guesses: [],
-    house: json2,
+    house: json,
   });
   const [currentGuessIndex, setCurrentGuessIndex] = useState<number>(0);
   const [showImage, setShowImage] = useState<boolean>(false);
@@ -51,17 +50,19 @@ export default function Game() {
   const router = useRouter();
 
   const handleGuess = handleSubmit((data) => {
+    // remove whitespace from the guess
+    data.guess = data.guess.replace(/\s/g, "");
     const res = handleCompareGuessToPrice(data.guess);
     const guessObject: guessObject = { guess: data.guess };
     if (res === 1) {
       // append "Too high" to the guessess array
-      guessObject.result = "Too high";
+      guessObject.result = "För högt";
     } else if (res === -1) {
       // append "Too low" to the guessess array
-      guessObject.result = "Too low";
+      guessObject.result = "För lågt";
     } else if (res === 0) {
       // append "Correct" to the guessess array
-      guessObject.result = "Correct";
+      guessObject.result = "Korrekt";
     }
 
     setGameData((prevGameData) => {
@@ -102,20 +103,19 @@ export default function Game() {
   function handleGetClue(clue: number): string {
     // if current guess index is 0, return presentedBy
     if (clue === 0) {
-      return "Presented by: " + gameData.house.presentedBy;
+      return "Bostadstyp: " + gameData.house.bostadstyp;
     } else if (clue === 1) {
-      return "Location: " + gameData.house.location;
+      return "Lokation: " + gameData.house.location;
     } else if (clue === 2) {
-      return "Antal rum: " + gameData.house.rooms.toString();
+      return "BoArea " + gameData.house.size.toString();
     } else if (clue === 3) {
-      return "sq feet: " + gameData.house.size.toString();
+      return "Byggår: " + gameData.house.buildingYear.toString();
     } else if (clue === 4) {
-      return "Buildyear: " + gameData.house.buildingYear.toString();
+      return "Antal rum: " + gameData.house.rooms.toString();
     } else if (clue === 5) {
       return gameData.house.name;
-    } else {
-      return "No more clues!";
     }
+    return "";
   }
 
   function handleGoBackToLastGuess() {
@@ -140,6 +140,11 @@ export default function Game() {
   function handleBackToCurrentGuess() {
     setCurrentGuessIndex(gameData.guesses.length);
   }
+  useEffect(() => {
+    if (gameData.guesses.length === 6) {
+      void router.push("/results").then().catch(null);
+    }
+  }, [gameData.guesses]);
 
   useEffect(() => {
     const guesses = localStorage.getItem("guessess");
@@ -161,11 +166,6 @@ export default function Game() {
   }, [gameData.guesses]);
 
   //if guessess array length is 6 then redirect to results page
-  useEffect(() => {
-    if (gameData.guesses.length === 6) {
-      void router.push("/results").then().catch(null);
-    }
-  }, [gameData.guesses]);
 
   // styling for button, if its impossible to go back further, then disable the button
   // if its impossible to go forward, then disable the button
@@ -186,24 +186,25 @@ export default function Game() {
   };
 
   return (
-    <div className="z-0 flex h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-950  to-slate-900 font-mono">
-      <div className="flex w-[33rem] flex-col justify-evenly gap-5 ">
+    <div className="z-0  flex h-screen items-center justify-center bg-[#082525]  font-mono">
+      <div className="mx-2 flex h-full w-[33rem] flex-col justify-evenly gap-5 ">
         <span className="flex flex-col gap-4 ">
           <ProgressBar2 progress={((currentGuessIndex + 1) / 6) * 100} />
           <h2 className="text-4xl font-bold text-amber-300">
-            CLUE #{currentGuessIndex + 1}{" "}
+            LEDTRÅD #{currentGuessIndex + 1}{" "}
           </h2>
 
-          <p className="text-xl font-medium text-white">
+          <p className="text-xl font-semibold text-white">
             {handleGetClue(currentGuessIndex)}
           </p>
         </span>
 
-        <span className="rounded-sm shadow-md shadow-purple-500/50">
-          <img
-            className=" w-full rounded-sm object-cover "
-            src={gameData.house.images[currentGuessIndex]}
-            alt=""
+        <span className="rounded-sm ">
+          <Image
+            alt="house image"
+            src={gameData.house.images[currentGuessIndex] as string}
+            width={500}
+            height={500}
           />
         </span>
         <div className="flex items-center justify-center">
@@ -230,10 +231,11 @@ export default function Game() {
               </button>
             </div>
             <div className="flex w-[80%] items-center justify-center rounded-lg ">
-              <img
-                src={gameData.house.images[currentGuessIndex]}
-                alt=""
-                className="max-h-full max-w-full"
+              <Image
+                src={gameData.house.images[currentGuessIndex] as string}
+                alt="house image"
+                width={500}
+                height={500}
               />
             </div>
           </div>
@@ -264,7 +266,7 @@ export default function Game() {
                 leaveTo="opacity-0 scale-95"
               >
                 <button
-                  className="flex  w-full justify-center bg-purple-700 hover:bg-purple-800"
+                  className="flex  w-full justify-center bg-green-700 hover:bg-green-800"
                   onClick={() => setShowClueBox(false)}
                 >
                   <BsCaretDownFill className="text-2xl text-white" />
@@ -277,15 +279,20 @@ export default function Game() {
                         className="flex cursor-pointer items-center justify-between border-b border-slate-500 p-2 "
                       >
                         <span className=" p-2 text-2xl font-bold text-yellow-300">
-                          Guess #{index + 1}
+                          FÖRSÖK #{index + 1}
                           <p className="items-center  text-xl font-light text-white">
-                            {Number(guess.guess)}{" "}
+                            {Number(guess.guess)
+                              .toLocaleString("sv-SE", {
+                                style: "currency",
+                                currency: "SEK",
+                              })
+                              .replace(/\s+/g, "")}
                           </p>
                         </span>
-                        <span className="rounded-lg bg-purple-400 ">
-                          <p className="p-2 text-xl font-medium text-white">
+                        <span className="rounded-lg bg-green-400 ">
+                          <p className="p-2 text-xl font-semibold text-gray-900">
                             {" "}
-                            {guess.result}
+                            {guess.result?.toLocaleUpperCase()}
                           </p>
                         </span>
                       </div>
@@ -301,7 +308,7 @@ export default function Game() {
               >
                 {!showClueBox ? (
                   <button
-                    className="flex  w-full justify-center bg-purple-700 hover:bg-purple-800"
+                    className="flex  w-full justify-center bg-green-700 hover:bg-green-800"
                     onClick={() => setShowClueBox(true)}
                   >
                     <BsCaretUpFill className="text-2xl text-white" />
@@ -316,7 +323,15 @@ export default function Game() {
                       SEK
                     </span>
                     <input
-                      {...register("guess", { required: true })}
+                      {...register("guess", {
+                        required: true,
+                        onChange: (e: ChangeEvent<HTMLInputElement>) => {
+                          const value = e.target.value.replace(/\D/g, ""); // Remove non-digit characters
+                          const formattedValue =
+                            Number(value).toLocaleString("sv-SE");
+                          e.target.value = formattedValue;
+                        },
+                      })}
                       placeholder="xxx"
                       className="w-full rounded-lg border-2 border-gray-300 py-2 pl-10 pr-3 text-center text-2xl focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-opacity-50"
                     />
@@ -332,9 +347,9 @@ export default function Game() {
                     </button>
                     <button
                       type="submit"
-                      className="flex-[6] rounded-md bg-slate-800 py-2 text-4xl text-white hover:bg-slate-900"
+                      className="h-full flex-[6] rounded-md bg-slate-700 py-2 text-3xl font-bold  text-white hover:bg-slate-900"
                     >
-                      Guess
+                      GISSA
                     </button>
                     <button
                       type="button"
@@ -348,37 +363,60 @@ export default function Game() {
               </form>
             </div>
           ) : (
-            <form
-              key="current-guess-form"
-              onSubmit={handleBackToCurrentGuess}
-              className="rounded-xl rounded-t bg-gray-200"
-            >
-              <span className="flex flex-col p-4">
-                <div className="flex w-full items-center justify-center gap-1">
-                  <button
-                    type="button"
-                    onClick={handleGoBackToLastGuess}
-                    className={handleBackButtonStyle(currentGuessIndex)}
-                  >
-                    <AiOutlineDoubleLeft className="text-4xl" />
-                  </button>
-
-                  <button
-                    type="submit"
-                    className="flex-[6] rounded-md bg-slate-800 py-2 text-3xl text-white"
-                  >
-                    BACK TO GUESSING
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleGoToNextGuess}
-                    className={handleRightButtonStyle(currentGuessIndex)}
-                  >
-                    <AiOutlineDoubleRight className="text-4xl" />
-                  </button>
+            <div className="relative  ">
+              <Transition show={true}>
+                <div className="flex cursor-pointer items-center justify-between border-b border-slate-600 bg-gray-800 p-2 ">
+                  <span className=" p-2 text-2xl font-bold text-yellow-300">
+                    FÖRSÖK #{currentGuessIndex + 1}
+                    <p className="items-center  text-xl font-light text-white">
+                      {Number(gameData.guesses[currentGuessIndex]?.guess)
+                        .toLocaleString("sv-SE", {
+                          style: "currency",
+                          currency: "SEK",
+                        })
+                        .replace(/\s+/g, "")}
+                    </p>
+                  </span>
+                  <span className="rounded-lg bg-green-400 ">
+                    <p className="p-2 text-xl font-semibold text-gray-900">
+                      {" "}
+                      {gameData.guesses[currentGuessIndex]?.result}
+                    </p>
+                  </span>
                 </div>
-              </span>
-            </form>
+              </Transition>
+              <form
+                key="current-guess-form"
+                onSubmit={handleBackToCurrentGuess}
+                className="rounded-xl rounded-t bg-gray-200"
+              >
+                <span className="flex flex-col p-4">
+                  <div className="flex w-full items-center justify-center gap-1">
+                    <button
+                      type="button"
+                      onClick={handleGoBackToLastGuess}
+                      className={handleBackButtonStyle(currentGuessIndex)}
+                    >
+                      <AiOutlineDoubleLeft className="text-4xl" />
+                    </button>
+
+                    <button
+                      type="submit"
+                      className="h-full flex-[6] rounded-md bg-slate-700 py-2 text-3xl font-bold text-white hover:bg-slate-900"
+                    >
+                      Fortsätt Gissa
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleGoToNextGuess}
+                      className={handleRightButtonStyle(currentGuessIndex)}
+                    >
+                      <AiOutlineDoubleRight className="text-4xl" />
+                    </button>
+                  </div>
+                </span>
+              </form>
+            </div>
           )}
         </Transition>
       </div>

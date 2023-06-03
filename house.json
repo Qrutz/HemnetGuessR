@@ -2,17 +2,17 @@
     "price": 3495000,
     "listingurl": "https://www.hemnet.se/bostad/fritidsboende-3rum-almasa-malmo-kommun-blaklintsgatan-28-19973941",
     "name": "Rullstensvägen 25C",
-    "presentedBy": "HusmanHagberg",
+    "bostadstyp": "Villa",
     "location": "Sandared, Borås kommun",
     "rooms": 1,
     "size": 40,
     "buildingYear": 1963,
     "images": [
         "https://bilder.hemnet.se/images/itemgallery_cut/8c/04/8c0437b118aeaae6c83ecbe290931a08.jpg",
-        "https://www.bjurfors.se/contentassets/61dfedfec6004d8aae08a0cc9efe8e15/cbild5d63lepibegucrrn.jpg?width=1265&&mode=crop&quality=80",
-        "https://www.bjurfors.se/contentassets/61dfedfec6004d8aae08a0cc9efe8e15/cbild5d63lem4fegucpe2.jpg?width=1265&&mode=crop&quality=80",
-        "https://www.bjurfors.se/contentassets/61dfedfec6004d8aae08a0cc9efe8e15/cbild5d63leaj3eguciv8.jpg?width=1265&&mode=crop&quality=80",
-        "https://www.bjurfors.se/contentassets/61dfedfec6004d8aae08a0cc9efe8e15/cbild5d63lfhq5egudc91.jpg?width=1265&&mode=crop&quality=80",
-        "https://www.bjurfors.se/contentassets/61dfedfec6004d8aae08a0cc9efe8e15/cbild5d63le9aheguci8u.jpg?width=1265&&mode=crop&quality=80"
+        "https://bilder.hemnet.se/images/1024x/f8/73/f8730aa235d05aba0a2f342a3c7c3dee.jpg",
+        "https://bilder.hemnet.se/images/1024x/9a/f6/9af6bc0e65b391d66422d234ed834f71.jpg",
+        "https://bilder.hemnet.se/images/1024x/6c/5b/6c5b8febf5dd2fa6dd1c7ba5059d0dff.jpg",
+        "https://bilder.hemnet.se/images/1024x/3a/f9/3af9c4814db4eeccffe79a35d76a75f7.jpg",
+        "https://bilder.hemnet.se/images/1024x/e6/ab/e6abf9b700ee995244f75f10f9de9210.jpg"
     ]
 }
