@@ -1,8 +1,11 @@
 import React, { type ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { Amplify, API, withSSRContext } from "aws-amplify";
 import { useRouter } from "next/router";
 import json from "../../house.json";
 import Image from "next/image";
+
+import awsconfig from "../aws-exports";
 
 import { Dialog, Transition } from "@headlessui/react";
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
@@ -10,7 +13,8 @@ import { ImCross } from "react-icons/im";
 import { BsCaretDownFill, BsCaretUpFill, BsZoomIn } from "react-icons/bs";
 import ProgressBar2 from "~/components/progressBarV2";
 import { QueryClient, useQuery } from "react-query";
-import { API } from "aws-amplify";
+
+Amplify.configure({ ...awsconfig, ssr: true });
 
 type FormValues = {
   guess: string;
@@ -434,7 +438,7 @@ export async function getServerSideProps() {
   });
   return {
     props: {
-      items: data,
+      items: data.body,
     },
   };
 }
