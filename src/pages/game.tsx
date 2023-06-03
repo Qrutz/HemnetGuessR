@@ -9,6 +9,8 @@ import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
 import { BsCaretDownFill, BsCaretUpFill, BsZoomIn } from "react-icons/bs";
 import ProgressBar2 from "~/components/progressBarV2";
+import { QueryClient, useQuery } from "react-query";
+import { API } from "aws-amplify";
 
 type FormValues = {
   guess: string;
@@ -38,11 +40,11 @@ type House = {
 
 // create json for a house listing which has a price, the image below anda bunch of rooms for that house
 
-export default function Game() {
+export default function Game({ house }: { house: House }) {
   const { register, handleSubmit, reset } = useForm<FormValues>();
   const [gameData, setGameData] = useState<gameData>({
     guesses: [],
-    house: json,
+    house: house,
   });
   const [currentGuessIndex, setCurrentGuessIndex] = useState<number>(0);
   const [showImage, setShowImage] = useState<boolean>(false);
@@ -423,3 +425,18 @@ export default function Game() {
     </div>
   );
 }
+
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+export async function getServerSideProps() {
+  const { data } = await API.get("/listingAPI", "/items", {
+    headers: {},
+    response: true,
+  });
+  return {
+    props: {
+      items: data,
+    },
+  };
+}
+
+/* eslint-enable @typescript-eslint/no-unsafe-assignment */

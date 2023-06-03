@@ -1,6 +1,10 @@
 import { type AppType } from "next/dist/shared/lib/utils";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "~/styles/globals.css";
+import { Amplify, API } from "aws-amplify";
+import awsconfig from "../aws-exports";
+
+Amplify.configure({ ...awsconfig, ssr: true });
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
