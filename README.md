@@ -5,8 +5,9 @@ Wordle inspiried game where you guess the price of a hemnent listing, after ever
 - Nextjs
 - Typescript
 - AWS Services. (see below diagram).
-- Python
+- Serverless framework
 - Selenium
+- Python
 - Tailwind
 
 ## Game UI
