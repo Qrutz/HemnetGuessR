@@ -13,11 +13,13 @@ Wordle inspiried game where you guess the price of a hemnent listing, after ever
 
 Game  |  Past guessess
 :-------------------------:|:-------------------------:
-![image](https://github.com/Qrutz/TervsGame/assets/40356149/b885f989-52d7-47e4-8990-581d0da12fec) | ![image](https://github.com/Qrutz/TervsGame/assets/40356149/e52252e4-a298-4e94-b31f-8471593eec86)
+![image](https://github.com/Qrutz/HemnetGuessR/assets/40356149/528da5b7-27dc-48a7-8f5a-7d81b44dfc78) | ![image](https://github.com/Qrutz/HemnetGuessR/assets/40356149/edcda655-c2ca-4891-b40c-fdca42a3adb6)
+
 
 ## AWS Architechture
+![AWS (2019) horizontal framework](https://github.com/Qrutz/HemnetGuessR/assets/40356149/e92721f8-f7df-46c2-98e1-4b54deaf6df5)
 
-![AWS (2019) horizontal framework](https://github.com/Qrutz/TervsGame/assets/40356149/3b4aada6-a6aa-4753-aca2-d1fd1e452634)
+
 
 - Amplify: Used for hosting our nextjs application.
 
